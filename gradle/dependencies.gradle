@@ -1,0 +1,28 @@
+ext {
+    versions {
+        rxjavaVer = "2.2.1"
+        daggerVer = "2.16"
+        supportLib = "1.0.0-rc1"
+        retrofitVer = "2.4.0"
+
+        archVer = "2.0.0-beta1"
+    }
+}
+
+ext {
+    deps {
+        rxJava = "io.reactivex.rxjava2:rxjava:$rxjavaVer"
+        rxKotlin = "io.reactivex.rxjava2:rxkotlin:$rxjavaVer"
+        rxRelay = "com.jakewharton.rxrelay2:rxrelay:2.0.0"
+
+        dagger = "com.google.dagger:dagger:$daggerVer"
+        daggerApt = "com.google.dagger:dagger-compiler:$daggerVer"
+
+        retrofit = "com.squareup.retrofit2:retrofit:$retrofitVer"
+        retrofitMoshi = "com.squareup.retrofit2:converter-moshi:$retrofitVer"
+        retrofitRx = "com.squareup.retrofit2:adapter-rxjava2:$retrofitVer"
+
+        viewModel = "android.arch.lifecycle:viewmodel:$archVer"
+        viewModelRuntime = "android.arch.lifecycle:runtime:$archVer"
+    }
+}
