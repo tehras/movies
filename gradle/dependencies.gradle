@@ -1,28 +1,38 @@
 ext {
-    versions {
-        rxjavaVer = "2.2.1"
-        daggerVer = "2.16"
-        supportLib = "1.0.0-rc1"
-        retrofitVer = "2.4.0"
+    def rxjavaVer = "2.2.0"
+    def daggerVer = "2.16"
+    def supportLib = "1.0.0-rc01"
+    def retrofitVer = "2.4.0"
+    def archVer = "2.0.0-beta01"
 
-        archVer = "2.0.0-beta1"
-    }
-}
+    deps = [
+            module            : [
+                    arch  : project(':arch'),
+                    dagger: project(':dagger'),
+                    home  : project(':home')
+            ],
 
-ext {
-    deps {
-        rxJava = "io.reactivex.rxjava2:rxjava:$rxjavaVer"
-        rxKotlin = "io.reactivex.rxjava2:rxkotlin:$rxjavaVer"
-        rxRelay = "com.jakewharton.rxrelay2:rxrelay:2.0.0"
+            rxJava            : "io.reactivex.rxjava2:rxjava:$rxjavaVer",
+            rxKotlin          : "io.reactivex.rxjava2:rxkotlin:$rxjavaVer",
+            rxRelay           : "com.jakewharton.rxrelay2:rxrelay:2.0.0",
 
-        dagger = "com.google.dagger:dagger:$daggerVer"
-        daggerApt = "com.google.dagger:dagger-compiler:$daggerVer"
+            dagger            : "com.google.dagger:dagger:$daggerVer",
+            daggerApt         : "com.google.dagger:dagger-compiler:$daggerVer",
 
-        retrofit = "com.squareup.retrofit2:retrofit:$retrofitVer"
-        retrofitMoshi = "com.squareup.retrofit2:converter-moshi:$retrofitVer"
-        retrofitRx = "com.squareup.retrofit2:adapter-rxjava2:$retrofitVer"
+            retrofit          : "com.squareup.retrofit2:retrofit:$retrofitVer",
+            retrofitMoshi     : "com.squareup.retrofit2:converter-moshi:$retrofitVer",
+            retrofitRx        : "com.squareup.retrofit2:adapter-rxjava2:$retrofitVer",
 
-        viewModel = "android.arch.lifecycle:viewmodel:$archVer"
-        viewModelRuntime = "android.arch.lifecycle:runtime:$archVer"
-    }
+            viewModel         : "androidx.lifecycle:lifecycle-viewmodel:$archVer",
+            viewModelExt      : "androidx.lifecycle:lifecycle-extensions:$archVer",
+            viewModelCommon   : "androidx.lifecycle:lifecycle-common:$archVer",
+            viewModelRuntime  : "androidx.lifecycle:lifecycle-runtime:$archVer",
+            viewModelProcessor: "androidx.lifecycle:lifecycle-compiler:$archVer",
+
+            appCompat         : "androidx.appcompat:appcompat:$supportLib",
+            coordinatorLayout : "androidx.coordinatorlayout:coordinatorlayout:$supportLib",
+            design            : "com.google.android.material:material:$supportLib",
+            constraintLayout  : "androidx.constraintlayout:constraintlayout:1.1.0"
+    ]
+
 }

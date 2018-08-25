@@ -1,0 +1,10 @@
+apply from: '../gradle/dependencies.gradle'
+
+dependencies {
+    implementation deps.appCompat
+    implementation deps.constraintLayout
+    implementation deps.coordinatorLayout
+    implementation deps.design
+
+    implementation deps.module.arch
+}

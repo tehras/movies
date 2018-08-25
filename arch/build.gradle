@@ -1,0 +1,20 @@
+apply plugin: 'com.android.library'
+apply from: '../gradle/common-android.gradle'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation deps.appCompat
+
+    implementation deps.viewModel
+    implementation deps.viewModelExt
+    implementation deps.viewModelCommon
+    implementation deps.viewModelRuntime
+
+    implementation deps.dagger
+    kapt deps.daggerApt
+
+    implementation deps.rxJava
+    implementation deps.rxKotlin
+    implementation deps.rxRelay
+}
