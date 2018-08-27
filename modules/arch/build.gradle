@@ -1,0 +1,17 @@
+apply plugin: 'com.android.library'
+apply from: "$rootDir/gradle/common-android.gradle"
+apply from: "$rootDir/gradle/common-dagger.gradle"
+
+dependencies {
+    implementation deps.appCompat
+
+    implementation deps.viewModel
+    implementation deps.viewModelExt
+    implementation deps.viewModelCommon
+    implementation deps.viewModelRuntime
+
+    api deps.rxJava
+    api deps.rxAndroid
+    api deps.rxKotlin
+    api deps.rxRelay
+}

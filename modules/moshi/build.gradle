@@ -1,0 +1,7 @@
+apply plugin: 'com.android.library'
+apply from: "$rootDir/gradle/common-android.gradle"
+apply from: "$rootDir/gradle/common-dagger.gradle"
+
+dependencies {
+    api deps.moshi
+}

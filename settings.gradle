@@ -1,1 +1,8 @@
-include ':app', ':arch', ':dagger', ':home'
+include ':app',
+        'modules:moshi',
+        'modules:logger',
+        'modules:arch',
+        'modules:dagger',
+        'modules:home',
+        'modules:restapi',
+        'modules:extensions'

@@ -1,4 +1,6 @@
-apply from: '../gradle/dependencies.gradle'
+apply from: "$rootDir/gradle/dependencies.gradle"
+apply from: "$rootDir/gradle/common-dagger.gradle"
+apply from: "$rootDir/gradle/common-utils.gradle"
 
 dependencies {
     implementation deps.appCompat
@@ -7,4 +9,6 @@ dependencies {
     implementation deps.design
 
     implementation deps.module.arch
+    implementation deps.module.restApi
+    implementation deps.module.extensions
 }

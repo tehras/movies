@@ -1,0 +1,6 @@
+apply plugin: 'com.android.library'
+apply from: "$rootDir/gradle/common-android.gradle"
+
+dependencies {
+    api deps.timber
+}

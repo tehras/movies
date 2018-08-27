@@ -1,5 +1,8 @@
 apply plugin: 'com.android.application'
-apply from: '../gradle/common-android.gradle'
+apply from: "$rootDir/gradle/common-android.gradle"
+apply from: "$rootDir/gradle/common-dagger.gradle"
+apply from: "$rootDir/gradle/common-ui.gradle"
+apply from: "$rootDir/gradle/common-utils.gradle"
 
 android {
     defaultConfig {
@@ -8,12 +11,6 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    implementation deps.appCompat
-    implementation deps.module.arch
-    implementation deps.module.dagger
-
     // UI Modules
     implementation deps.module.home
 }

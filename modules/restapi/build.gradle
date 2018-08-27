@@ -1,0 +1,14 @@
+apply plugin: 'com.android.library'
+apply from: "$rootDir/gradle/common-android.gradle"
+apply from: "$rootDir/gradle/common-utils.gradle"
+apply from: "$rootDir/gradle/common-dagger.gradle"
+
+dependencies {
+    api deps.retrofit
+    api deps.retrofitMoshi
+    api deps.retrofitRx
+
+    api deps.moshi
+    api deps.moshiKotlin
+    kapt deps.moshiCodegen
+}

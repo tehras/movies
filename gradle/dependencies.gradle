@@ -4,16 +4,22 @@ ext {
     def supportLib = "1.0.0-rc01"
     def retrofitVer = "2.4.0"
     def archVer = "2.0.0-beta01"
+    def moshiVer = "1.6.0"
 
     deps = [
             module            : [
-                    arch  : project(':arch'),
-                    dagger: project(':dagger'),
-                    home  : project(':home')
+                    arch      : project(':modules:arch'),
+                    dagger    : project(':modules:dagger'),
+                    home      : project(':modules:home'),
+                    logger    : project(':modules:logger'),
+                    restApi   : project(':modules:restapi'),
+                    extensions: project(':modules:extensions'),
+                    moshi     : project(':modules:moshi')
             ],
 
             rxJava            : "io.reactivex.rxjava2:rxjava:$rxjavaVer",
             rxKotlin          : "io.reactivex.rxjava2:rxkotlin:$rxjavaVer",
+            rxAndroid         : "io.reactivex.rxjava2:rxandroid:2.1.0",
             rxRelay           : "com.jakewharton.rxrelay2:rxrelay:2.0.0",
 
             dagger            : "com.google.dagger:dagger:$daggerVer",
@@ -22,6 +28,12 @@ ext {
             retrofit          : "com.squareup.retrofit2:retrofit:$retrofitVer",
             retrofitMoshi     : "com.squareup.retrofit2:converter-moshi:$retrofitVer",
             retrofitRx        : "com.squareup.retrofit2:adapter-rxjava2:$retrofitVer",
+
+            moshi             : "com.squareup.moshi:moshi:$moshiVer",
+            moshiKotlin       : "com.squareup.moshi:moshi-kotlin:$moshiVer",
+            moshiCodegen      : "com.squareup.moshi:moshi-kotlin-codegen:$moshiVer",
+
+            timber            : "com.jakewharton.timber:timber:4.7.1",
 
             viewModel         : "androidx.lifecycle:lifecycle-viewmodel:$archVer",
             viewModelExt      : "androidx.lifecycle:lifecycle-extensions:$archVer",

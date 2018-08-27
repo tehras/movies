@@ -1,0 +1,5 @@
+dependencies {
+    implementation deps.module.dagger
+    implementation deps.dagger
+    kapt deps.daggerApt
+}

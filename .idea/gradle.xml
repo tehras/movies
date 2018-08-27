@@ -9,9 +9,14 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/arch" />
-            <option value="$PROJECT_DIR$/dagger" />
-            <option value="$PROJECT_DIR$/home" />
+            <option value="$PROJECT_DIR$/modules" />
+            <option value="$PROJECT_DIR$/modules/arch" />
+            <option value="$PROJECT_DIR$/modules/dagger" />
+            <option value="$PROJECT_DIR$/modules/extensions" />
+            <option value="$PROJECT_DIR$/modules/home" />
+            <option value="$PROJECT_DIR$/modules/logger" />
+            <option value="$PROJECT_DIR$/modules/moshi" />
+            <option value="$PROJECT_DIR$/modules/restapi" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
