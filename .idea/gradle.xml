@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/modules" />
             <option value="$PROJECT_DIR$/modules/arch" />
             <option value="$PROJECT_DIR$/modules/dagger" />
+            <option value="$PROJECT_DIR$/modules/discover" />
             <option value="$PROJECT_DIR$/modules/extensions" />
             <option value="$PROJECT_DIR$/modules/home" />
             <option value="$PROJECT_DIR$/modules/logger" />

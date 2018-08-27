@@ -6,6 +6,7 @@ package com.github.tehras.moviefunfact.app
 import com.github.tehras.dagger.components.MainComponent
 import com.github.tehras.dagger.modules.AppModule
 import com.github.tehras.dagger.scopes.ApplicationScope
+import com.github.tehras.discover.ui.DiscoverComponentCreator
 import com.github.tehras.home.HomeComponentCreator
 import com.github.tehras.moshi.MoshiModule
 import com.github.tehras.restapi.retrofit.RetrofitModule
@@ -25,7 +26,10 @@ import dagger.Component
         MoshiModule::class
     ]
 )
-interface AppComponent : MainComponent, HomeComponentCreator {
+interface AppComponent :
+    MainComponent,
+    HomeComponentCreator,
+    DiscoverComponentCreator {
 
     @Component.Builder
     interface Builder {

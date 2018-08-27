@@ -13,4 +13,5 @@ android {
 dependencies {
     // UI Modules
     implementation deps.module.home
+    implementation deps.module.discover
 }

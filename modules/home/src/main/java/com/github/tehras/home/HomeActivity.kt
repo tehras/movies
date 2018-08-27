@@ -2,14 +2,12 @@ package com.github.tehras.home
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.github.tehras.arch.viewModelActivity
 import com.github.tehras.dagger.components.findComponent
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.rxkotlin.plusAssign
+import com.github.tehras.discover.ui.DiscoverFragment
 import kotlinx.android.synthetic.main.activity_home.*
-import timber.log.Timber
 import javax.inject.Inject
 
 class HomeActivity : AppCompatActivity() {
@@ -17,8 +15,6 @@ class HomeActivity : AppCompatActivity() {
     @Inject
     lateinit var factory: ViewModelProvider.Factory
     private val viewModel by viewModelActivity<HomeViewModel> { factory }
-
-    private val disposables: CompositeDisposable = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         findComponent<HomeComponentCreator>()
@@ -29,23 +25,39 @@ class HomeActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_home)
         setSupportActionBar(toolbar)
+
+        setupBottomNav()
+
+        if (savedInstanceState == null) {
+            bottom_nav_view.selectedItemId = R.id.home_discover
+        }
     }
 
-    override fun onStart() {
-        super.onStart()
-
-        disposables += viewModel
-            .observeState()
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-                Timber.d("Response In UI - $it")
+    private fun setupBottomNav() {
+        bottom_nav_view.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.home_discover -> startDiscoverFragment()
             }
+
+            true
+        }
     }
 
-    override fun onStop() {
-        disposables.dispose()
+    private fun startDiscoverFragment() {
+        startFragment(DiscoverFragment.newInstance(), "discover_fragment")
+    }
 
-        super.onStop()
+    private fun startFragment(fragment: Fragment, tag: String) {
+        supportFragmentManager.fragments.lastOrNull()?.let {
+            if (it.javaClass == fragment.javaClass) {
+                return
+            }
+        }
+
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container, fragment, tag)
+            .commit()
     }
 
 }

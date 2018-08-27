@@ -14,7 +14,8 @@ ext {
                     logger    : project(':modules:logger'),
                     restApi   : project(':modules:restapi'),
                     extensions: project(':modules:extensions'),
-                    moshi     : project(':modules:moshi')
+                    moshi     : project(':modules:moshi'),
+                    discover  : project(':modules:discover')
             ],
 
             rxJava            : "io.reactivex.rxjava2:rxjava:$rxjavaVer",
