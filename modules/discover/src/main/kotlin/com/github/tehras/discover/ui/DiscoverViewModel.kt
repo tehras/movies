@@ -3,10 +3,15 @@
  */
 package com.github.tehras.discover.ui
 
+import android.annotation.SuppressLint
 import com.github.tehras.arch.ObservableViewModel
 import com.github.tehras.restapi.tmdb.Discover
 import com.github.tehras.restapi.tmdb.TmdbService
+import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 import javax.inject.Inject
 
 /**
@@ -14,17 +19,45 @@ import javax.inject.Inject
  */
 class DiscoverViewModel @Inject constructor(private val tmdbService: TmdbService) : ObservableViewModel<DiscoverState, DiscoverUiView>() {
 
+    @SuppressLint("CheckResult")
     override fun onCreate() {
         super.onCreate()
 
-        tmdbService.discover()
+        val listOfDiscoverRequests = mutableListOf<Observable<MutableList<Discover>>>()
+        for (year in 2018 downTo 2008) {
+            listOfDiscoverRequests += tmdbService.discover(dateByYear(year))
+                .toObservable()
+                .subscribeOn(Schedulers.io())
+                .map { it.results.toMutableList() }
+                .doOnError { mutableListOf<Discover>() }
+        }
+
+        Observable.merge(listOfDiscoverRequests)
+            .toList()
+            .map {
+                val mapOfDiscoveries = mutableMapOf<Int, MutableList<Discover>>()
+                it.forEach { listOfDiscover ->
+                    mapOfDiscoveries[listOfDiscover.getOrNull(0)?.releaseDate?.getYear() ?: 0] = listOfDiscover
+                }
+                DiscoverState(mapOfDiscoveries.toSortedMap(compareByDescending { key -> key }))
+            }
             .toObservable()
-            .subscribeOn(Schedulers.io())
-            .map { it.results }
-            .map { DiscoverState(hashMapOf(2018 to it)) }
             .subscribeUntilDestroyed()
+    }
+
+    private fun dateByYear(year: Int): String {
+        val c = Calendar.getInstance()
+        return "$year-${c.get(Calendar.MONTH)}-${c.get(Calendar.DAY_OF_MONTH)}"
     }
 }
 
-class DiscoverState(val discoverMap: HashMap<Int, List<Discover>> /* <Year, List of Discovers> */, val error: Boolean = false)
+private fun String.getYear(): Int? {
+    val d = SimpleDateFormat("yyyy-MM-dd", Locale.US).parse(this)
+    return Calendar.getInstance().let { c ->
+        c.time = d
+        c.get(Calendar.YEAR)
+    }
+}
+
+class DiscoverState(val discoverMap: MutableMap<Int, MutableList<Discover>> /* <Year, List of Discovers> */, val error: Boolean = false)
 class DiscoverUiView

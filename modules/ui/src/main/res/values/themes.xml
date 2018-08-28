@@ -1,0 +1,4 @@
+<resources>
+    <style name="Theme.Movies.DayNight" parent="Theme.Movies.Light"/>
+    <style name="Theme.Movies.DayNight.NoActionBar" parent="Theme.Movies.Light.NoActionBar"/>
+</resources>

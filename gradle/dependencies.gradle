@@ -15,7 +15,8 @@ ext {
                     restApi   : project(':modules:restapi'),
                     extensions: project(':modules:extensions'),
                     moshi     : project(':modules:moshi'),
-                    discover  : project(':modules:discover')
+                    discover  : project(':modules:discover'),
+                    ui        : project(':modules:ui')
             ],
 
             rxJava            : "io.reactivex.rxjava2:rxjava:$rxjavaVer",
@@ -29,6 +30,8 @@ ext {
             retrofit          : "com.squareup.retrofit2:retrofit:$retrofitVer",
             retrofitMoshi     : "com.squareup.retrofit2:converter-moshi:$retrofitVer",
             retrofitRx        : "com.squareup.retrofit2:adapter-rxjava2:$retrofitVer",
+
+            picasso           : "com.squareup.picasso:picasso:2.71828",
 
             moshi             : "com.squareup.moshi:moshi:$moshiVer",
             moshiKotlin       : "com.squareup.moshi:moshi-kotlin:$moshiVer",

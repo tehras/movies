@@ -11,4 +11,5 @@ dependencies {
     implementation deps.module.arch
     implementation deps.module.restApi
     implementation deps.module.extensions
+    implementation deps.module.ui
 }

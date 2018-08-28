@@ -18,6 +18,7 @@
             <option value="$PROJECT_DIR$/modules/logger" />
             <option value="$PROJECT_DIR$/modules/moshi" />
             <option value="$PROJECT_DIR$/modules/restapi" />
+            <option value="$PROJECT_DIR$/modules/ui" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

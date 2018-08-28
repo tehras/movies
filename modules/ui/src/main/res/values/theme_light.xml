@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme. -->
+    <style name="Theme.Movies.Light" parent="Theme.AppCompat.Light.DarkActionBar">
+
+        <item name="colorPrimaryLight">@color/primary_color_light_light</item>
+        <item name="colorPrimary">@color/primary_color_light</item>
+        <item name="colorPrimaryDark">@color/primary_color_dark_light</item>
+
+        <item name="colorAccent">@color/secondary_color_light</item>
+        <item name="colorSecondaryLight">@color/secondary_color_light_light</item>
+        <item name="colorSecondaryDark">@color/secondary_color_light_dark</item>
+
+        <item name="appBar">@color/app_bar_light</item>
+        <item name="bgPrimary">@color/bg_primary_light</item>
+
+        <item name="typePrimary">@color/type_primary_light</item>
+        <item name="typeSecondary">@color/type_secondary_light</item>
+
+        <item name="dividerPrimary">@color/divider_light</item>
+    </style>
+
+    <style name="Theme.Movies.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+</resources>
