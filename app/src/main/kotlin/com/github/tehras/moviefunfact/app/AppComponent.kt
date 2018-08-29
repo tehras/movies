@@ -3,6 +3,7 @@
  */
 package com.github.tehras.moviefunfact.app
 
+import android.app.Application
 import com.github.tehras.dagger.components.MainComponent
 import com.github.tehras.dagger.modules.AppModule
 import com.github.tehras.dagger.scopes.ApplicationScope
@@ -31,11 +32,13 @@ interface AppComponent :
     HomeComponentCreator,
     DiscoverComponentCreator {
 
+    fun plusApplication(application: MovieApplication)
+
     @Component.Builder
     interface Builder {
 
         @BindsInstance
-        fun application(app: MovieApplication): Builder
+        fun application(app: Application): Builder
 
         fun build(): AppComponent
     }

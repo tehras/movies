@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2018 Evernote Corporation. All rights reserved.
  */
-package com.github.tehras.restapi.tmdb
+package com.github.tehras.restapi.tmdb.models
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -33,7 +33,8 @@ data class Discover(
     val popularity: Double,
     @Json(name = "vote_count") val voteCount: Int,
     val video: Boolean,
-    @Json(name = "vote_average") val voteAverage: Double
+    @Json(name = "vote_average") val voteAverage: Double,
+    @Transient val genres: MutableList<Genre> = mutableListOf()
 
 ) {
     override fun equals(other: Any?): Boolean {

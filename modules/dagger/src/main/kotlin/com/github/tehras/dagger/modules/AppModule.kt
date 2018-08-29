@@ -7,7 +7,6 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import com.github.tehras.dagger.scopes.ApplicationScope
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 
@@ -17,11 +16,13 @@ import dagger.Provides
 @Module
 abstract class AppModule {
 
-    @Binds
-    abstract fun bindContext(application: Application): Context
-
     @Module
     companion object {
+        @Provides
+        @JvmStatic
+        @ApplicationScope
+        fun bindContext(application: Application): Context = application.applicationContext
+
         @Provides
         @JvmStatic
         @ApplicationScope

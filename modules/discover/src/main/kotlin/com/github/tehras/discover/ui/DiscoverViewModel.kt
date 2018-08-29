@@ -5,13 +5,16 @@ package com.github.tehras.discover.ui
 
 import android.annotation.SuppressLint
 import com.github.tehras.arch.ObservableViewModel
-import com.github.tehras.restapi.tmdb.Discover
+import com.github.tehras.restapi.tmdb.SortBy
 import com.github.tehras.restapi.tmdb.TmdbService
-import io.reactivex.Observable
+import com.github.tehras.restapi.tmdb.models.Discover
+import com.github.tehras.restapi.tmdb.models.Genre
+import com.github.tehras.restapi.tmdb.models.GenresResponse
+import ext.java.util.format
+import ext.java.util.monthsAgo
+import io.reactivex.rxkotlin.Observables
 import io.reactivex.schedulers.Schedulers
-import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Locale
 import javax.inject.Inject
 
 /**
@@ -23,41 +26,65 @@ class DiscoverViewModel @Inject constructor(private val tmdbService: TmdbService
     override fun onCreate() {
         super.onCreate()
 
-        val listOfDiscoverRequests = mutableListOf<Observable<MutableList<Discover>>>()
-        for (year in 2018 downTo 2008) {
-            listOfDiscoverRequests += tmdbService.discover(dateByYear(year))
-                .toObservable()
-                .subscribeOn(Schedulers.io())
-                .map { it.results.toMutableList() }
-                .doOnError { mutableListOf<Discover>() }
-        }
+        val genres = tmdbService.genres()
+            .subscribeOn(Schedulers.io())
+            .toObservable()
+            .doOnError {
+                GenresResponse(listOf())
+            }
 
-        Observable.merge(listOfDiscoverRequests)
-            .toList()
+        val discoverObservable = tmdbService
+            .discover(
+                releaseDateGte = Calendar
+                    .getInstance()
+                    .monthsAgo(6)
+                    .format(),
+                releaseDateLte = Calendar
+                    .getInstance()
+                    .format(),
+                sortBy = SortBy.POPULARITY_DESC
+            )
+            .subscribeOn(Schedulers.io())
             .map {
-                val mapOfDiscoveries = mutableMapOf<Int, MutableList<Discover>>()
-                it.forEach { listOfDiscover ->
-                    mapOfDiscoveries[listOfDiscover.getOrNull(0)?.releaseDate?.getYear() ?: 0] = listOfDiscover
-                }
-                DiscoverState(mapOfDiscoveries.toSortedMap(compareByDescending { key -> key }))
+                it.results.toMutableList()
+            }
+            .doOnError {
+                mutableListOf<Discover>()
             }
             .toObservable()
+
+        Observables.zip(discoverObservable, genres)
+            .map { pair ->
+                pair.first.forEach {
+                    it.genres.addAll(findGenres(it.genreIds, pair.second))
+                }
+                DiscoverState(pair.first, false)
+            }
+            .doOnError {
+                DiscoverState(mutableListOf(), true)
+            }
             .subscribeUntilDestroyed()
     }
 
-    private fun dateByYear(year: Int): String {
-        val c = Calendar.getInstance()
-        return "$year-${c.get(Calendar.MONTH)}-${c.get(Calendar.DAY_OF_MONTH)}"
+    private fun findGenres(genreIds: Array<Int>, genresResponse: GenresResponse): MutableList<Genre> {
+        if (genresResponse.genres.isEmpty()) {
+            return mutableListOf()
+        }
+
+        val genres = mutableListOf<Genre>()
+        genreIds.forEach { id ->
+            genresResponse.genres.firstOrNull { it.id == id }?.also { genre ->
+                genres.add(genre)
+            }
+        }
+
+        return genres
     }
 }
 
-private fun String.getYear(): Int? {
-    val d = SimpleDateFormat("yyyy-MM-dd", Locale.US).parse(this)
-    return Calendar.getInstance().let { c ->
-        c.time = d
-        c.get(Calendar.YEAR)
-    }
-}
+data class DiscoverState(
+    val discoverItems: MutableList<Discover> /* <Year, List of Discovers> */,
+    val error: Boolean = false
+)
 
-class DiscoverState(val discoverMap: MutableMap<Int, MutableList<Discover>> /* <Year, List of Discovers> */, val error: Boolean = false)
 class DiscoverUiView

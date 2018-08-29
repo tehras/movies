@@ -1,8 +1,11 @@
 /*
  * Copyright (c) 2018 Evernote Corporation. All rights reserved.
  */
-package android.view
+package ext.android.view
 
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 
 /**

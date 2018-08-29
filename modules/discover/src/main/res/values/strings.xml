@@ -3,4 +3,5 @@
     <string name="movie_title">Movie Title</string>
     <string name="discover_title">Discover</string>
     <string name="discover_description">Check out most popular movies from today\'s date from the past years</string>
+    <string name="enable_dark_mode">Enable Dark Mode</string>
 </resources>

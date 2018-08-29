@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:id="@+id/genre_background"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="24dp"
+    android:layout_marginEnd="2dp"
+    android:layout_marginStart="2dp"
+    android:background="@drawable/drawable_outline"
+    tools:ignore="UselessParent">
+
+    <TextView
+        android:id="@+id/genre_title"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="6dp"
+        android:layout_marginStart="6dp"
+        android:ellipsize="marquee"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textColor="?attr/typePrimary"
+        android:textSize="10sp"
+        tools:ignore="SmallSp"
+        tools:text="Science Fiction"/>
+
+</FrameLayout>

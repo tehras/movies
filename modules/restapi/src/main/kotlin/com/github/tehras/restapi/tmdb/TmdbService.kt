@@ -4,11 +4,12 @@
 package com.github.tehras.restapi.tmdb
 
 import com.github.tehras.dagger.scopes.ApplicationScope
+import com.github.tehras.restapi.tmdb.models.DiscoverResponse
+import com.github.tehras.restapi.tmdb.models.GenresResponse
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
 import java.util.Calendar
-import javax.inject.Singleton
 
 /**
  * @author tkoshkin created on 8/26/18
@@ -21,6 +22,9 @@ interface TmdbService {
         @Query(value = "primary_release_date.lte") releaseDateLte: String = releaseDateGte,
         @Query(value = "sort_by") sortBy: SortBy = SortBy.POPULARITY_DESC
     ): Single<DiscoverResponse>
+
+    @GET("/3/genre/movie/list?api_key=$API_KEY")
+    fun genres(): Single<GenresResponse>
 }
 
 private fun today(): String {

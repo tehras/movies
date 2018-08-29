@@ -5,11 +5,11 @@ package com.github.tehras.discover.ui.list
 
 import android.annotation.SuppressLint
 import android.view.ViewGroup
-import android.view.inflateView
 import androidx.recyclerview.widget.RecyclerView
 import com.github.tehras.discover.R
-import com.github.tehras.restapi.tmdb.Discover
+import com.github.tehras.restapi.tmdb.models.Discover
 import com.jakewharton.rxrelay2.BehaviorRelay
+import ext.android.view.inflateView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Consumer
 import timber.log.Timber
@@ -20,7 +20,7 @@ import timber.log.Timber
 @SuppressLint("CheckResult")
 class DiscoverAdapter : RecyclerView.Adapter<DiscoverViewHolder>() {
 
-    private val discoverItems: DiscoverItems = DiscoverItems()
+    private var discoverItems: DiscoverItems = DiscoverItems()
 
     private val relay = BehaviorRelay.create<DiscoverItems>()
     fun consume(): Consumer<DiscoverItems> = relay
@@ -31,25 +31,19 @@ class DiscoverAdapter : RecyclerView.Adapter<DiscoverViewHolder>() {
             .startWith(DiscoverItems(State.LOADING, mutableListOf()))
             .subscribe {
                 Timber.d("Results received - ${it.discoverList}")
-                discoverItems.state = it.state
-                discoverItems.discoverList.addAll(it.discoverList)
+                val animate = discoverItems.state == State.LOADING && discoverItems.discoverList.isEmpty()
+                discoverItems = it
 
-                notifyDataSetChanged()
+                if (animate) {
+                    notifyItemRangeInserted(0, discoverItems.discoverList.size)
+                } else {
+                    notifyDataSetChanged()
+                }
             }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DiscoverViewHolder {
-        return when (ItemType.values()[viewType]) {
-            ItemType.TITLE -> DiscoverTitleViewHolder(parent.inflateView(R.layout.discover_view_title))
-            ItemType.BODY -> DiscoverMovieViewHolder(parent.inflateView(R.layout.discover_view_body))
-        }
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        return when (discoverItems.discoverList[position]) {
-            is Int -> ItemType.TITLE.ordinal
-            else -> ItemType.BODY.ordinal
-        }
+        return DiscoverMovieViewHolder(parent.inflateView(R.layout.discover_view_body))
     }
 
     override fun getItemCount(): Int {
@@ -58,17 +52,12 @@ class DiscoverAdapter : RecyclerView.Adapter<DiscoverViewHolder>() {
 
     override fun onBindViewHolder(holder: DiscoverViewHolder, position: Int) {
         when (holder) {
-            is DiscoverTitleViewHolder -> holder.bind(discoverItems.discoverList[position] as Int)
-            is DiscoverMovieViewHolder -> holder.bind(discoverItems.discoverList[position] as Discover)
+            is DiscoverMovieViewHolder -> holder.bind(discoverItems.discoverList[position])
         }
     }
 }
 
-data class DiscoverItems(var state: State = State.LOADING, var discoverList: MutableList<Any> = mutableListOf())
-
-enum class ItemType {
-    TITLE, BODY
-}
+data class DiscoverItems(var state: State = State.LOADING, var discoverList: MutableList<Discover> = mutableListOf())
 
 enum class State {
     ERROR, LOADING, DONE
