@@ -7,9 +7,9 @@ import android.annotation.SuppressLint
 import com.github.tehras.arch.ObservableViewModel
 import com.github.tehras.restapi.tmdb.SortBy
 import com.github.tehras.restapi.tmdb.TmdbService
-import com.github.tehras.restapi.tmdb.models.Discover
-import com.github.tehras.restapi.tmdb.models.Genre
-import com.github.tehras.restapi.tmdb.models.GenresResponse
+import com.github.tehras.restapi.tmdb.models.discover.Discover
+import com.github.tehras.restapi.tmdb.models.genres.Genre
+import com.github.tehras.restapi.tmdb.models.genres.GenresResponse
 import ext.java.util.format
 import ext.java.util.monthsAgo
 import io.reactivex.rxkotlin.Observables

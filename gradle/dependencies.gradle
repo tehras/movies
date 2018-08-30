@@ -1,5 +1,6 @@
 ext {
     def rxjavaVer = "2.2.0"
+    def rxBindingsVer = "2.1.1"
     def daggerVer = "2.16"
     def supportLib = "1.0.0-rc01"
     def retrofitVer = "2.4.0"
@@ -8,21 +9,28 @@ ext {
 
     deps = [
             module            : [
-                    arch      : project(':modules:arch'),
-                    dagger    : project(':modules:dagger'),
-                    home      : project(':modules:home'),
-                    logger    : project(':modules:logger'),
-                    restApi   : project(':modules:restapi'),
-                    extensions: project(':modules:extensions'),
-                    moshi     : project(':modules:moshi'),
-                    discover  : project(':modules:discover'),
-                    ui        : project(':modules:ui')
+                    arch        : project(':modules:arch'),
+                    dagger      : project(':modules:dagger'),
+                    home        : project(':modules:home'),
+                    movieDetails: project(':modules:movie_details'),
+                    logger      : project(':modules:logger'),
+                    restApi     : project(':modules:restapi'),
+                    extensions  : project(':modules:extensions'),
+                    moshi       : project(':modules:moshi'),
+                    discover    : project(':modules:discover'),
+                    ui          : project(':modules:ui')
             ],
 
             rxJava            : "io.reactivex.rxjava2:rxjava:$rxjavaVer",
             rxKotlin          : "io.reactivex.rxjava2:rxkotlin:$rxjavaVer",
             rxAndroid         : "io.reactivex.rxjava2:rxandroid:2.1.0",
             rxRelay           : "com.jakewharton.rxrelay2:rxrelay:2.0.0",
+            rxBinding         : "com.jakewharton.rxbinding2:rxbinding:$rxBindingsVer",
+            rxBindingKt       : "com.jakewharton.rxbinding2:rxbinding-kotlin:$rxBindingsVer",
+            rxBindingRv       : "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7:$rxBindingsVer",
+            rxBindingRvKt     : "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7-kotlin:$rxBindingsVer",
+            rxBindingDesign   : "com.jakewharton.rxbinding2:rxbinding-design:$rxBindingsVer",
+            rxBindingDesignKt : "com.jakewharton.rxbinding2:rxbinding-design-kotlin:$rxBindingsVer",
 
             dagger            : "com.google.dagger:dagger:$daggerVer",
             daggerApt         : "com.google.dagger:dagger-compiler:$daggerVer",

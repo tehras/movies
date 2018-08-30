@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/modules/home" />
             <option value="$PROJECT_DIR$/modules/logger" />
             <option value="$PROJECT_DIR$/modules/moshi" />
+            <option value="$PROJECT_DIR$/modules/movie_details" />
             <option value="$PROJECT_DIR$/modules/restapi" />
             <option value="$PROJECT_DIR$/modules/ui" />
           </set>

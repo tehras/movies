@@ -10,6 +10,10 @@
         <item name="android:textSize">30sp</item>
     </style>
 
+    <style name="CollapsingAppBar.Expanded.White">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
     <style name="CollapsingAppBar.Collapsed">
         <item name="android:textSize">18sp</item>
     </style>

@@ -7,7 +7,7 @@ import android.annotation.SuppressLint
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.github.tehras.discover.R
-import com.github.tehras.restapi.tmdb.models.Discover
+import com.github.tehras.restapi.tmdb.models.discover.Discover
 import com.jakewharton.rxrelay2.BehaviorRelay
 import ext.android.view.inflateView
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -18,7 +18,7 @@ import timber.log.Timber
  * @author tkoshkin created on 8/27/18
  */
 @SuppressLint("CheckResult")
-class DiscoverAdapter : RecyclerView.Adapter<DiscoverViewHolder>() {
+class DiscoverAdapter(private val clickConsumer: Consumer<Discover>) : RecyclerView.Adapter<DiscoverViewHolder>() {
 
     private var discoverItems: DiscoverItems = DiscoverItems()
 
@@ -43,7 +43,7 @@ class DiscoverAdapter : RecyclerView.Adapter<DiscoverViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DiscoverViewHolder {
-        return DiscoverMovieViewHolder(parent.inflateView(R.layout.discover_view_body))
+        return DiscoverMovieViewHolder(parent.inflateView(R.layout.discover_view_body), clickConsumer)
     }
 
     override fun getItemCount(): Int {

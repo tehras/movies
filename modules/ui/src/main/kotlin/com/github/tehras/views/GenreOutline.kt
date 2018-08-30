@@ -32,6 +32,7 @@ class GenreOutline @JvmOverloads constructor(
     }
 
     fun setTint(@ColorRes color: Int) {
+        @Suppress("DEPRECATION")
         genre_background.background.colorFilter = PorterDuffColorFilter(context.resources.getColor(color), PorterDuff.Mode.SRC)
     }
 

@@ -16,6 +16,8 @@ class MoshiModule {
     companion object {
         @Provides
         @JvmStatic
-        fun providesMoshi(): Moshi = Moshi.Builder().build()
+        fun providesMoshi(): Moshi = Moshi
+            .Builder()
+            .build()
     }
 }

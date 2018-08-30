@@ -14,7 +14,7 @@
 
     <color name="primary_color_light_light">#ffffff</color>
     <color name="primary_color_light">#fafafa</color>
-    <color name="primary_color_dark_light">#c7c7c7</color>
+    <color name="primary_color_dark_light">#4f5b62</color>
 
     <color name="secondary_color_light_light">#ffc1e3</color>
     <color name="secondary_color_light">#f48fb1</color>

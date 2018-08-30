@@ -10,6 +10,7 @@ import com.github.tehras.dagger.scopes.ApplicationScope
 import com.github.tehras.discover.ui.DiscoverComponentCreator
 import com.github.tehras.home.HomeComponentCreator
 import com.github.tehras.moshi.MoshiModule
+import com.github.tehras.movie_details.MovieDetailsComponentCreator
 import com.github.tehras.restapi.retrofit.RetrofitModule
 import com.github.tehras.restapi.tmdb.TmdbServiceModule
 import dagger.BindsInstance
@@ -18,6 +19,7 @@ import dagger.Component
 /**
  * @author tkoshkin created on 8/24/18
  */
+@Suppress("unused")
 @ApplicationScope
 @Component(
     modules = [
@@ -30,6 +32,7 @@ import dagger.Component
 interface AppComponent :
     MainComponent,
     HomeComponentCreator,
+    MovieDetailsComponentCreator,
     DiscoverComponentCreator {
 
     fun plusApplication(application: MovieApplication)

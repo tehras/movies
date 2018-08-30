@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">MovieDetails</string>
+    <string name="background_image">Background Image</string>
+    <string name="movie_image">Movie Image</string>
+    <string name="description_title">Description</string>
+</resources>

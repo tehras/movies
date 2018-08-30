@@ -22,12 +22,14 @@ import com.github.tehras.discover.R
 import com.github.tehras.discover.ui.list.DiscoverAdapter
 import com.github.tehras.discover.ui.list.DiscoverItems
 import com.github.tehras.discover.ui.list.State
+import com.github.tehras.movie_details.MovieDetailsActivity
 import ext.android.content.isDarkModeEnabled
 import ext.android.content.setDarkModeEnabled
 import ext.androidx.fragment.app.darkTheme
 import ext.androidx.fragment.app.setToolbar
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.functions.Consumer
 import io.reactivex.rxkotlin.plusAssign
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 import kotlinx.android.synthetic.main.fragment_home_discover.*
@@ -49,7 +51,14 @@ class DiscoverFragment : Fragment() {
     lateinit var sharedPrefs: SharedPreferences
 
     private val viewModel by viewModel<DiscoverViewModel> { factory }
-    private val adapter by lazy { DiscoverAdapter() }
+    private val adapter by lazy {
+        DiscoverAdapter(Consumer { discover ->
+            this.activity?.let {
+                MovieDetailsActivity.start(it, discover.id)
+            }
+
+        })
+    }
 
     private val disposables: CompositeDisposable = CompositeDisposable()
 
