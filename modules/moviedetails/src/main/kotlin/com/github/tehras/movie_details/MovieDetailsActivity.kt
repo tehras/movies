@@ -66,7 +66,7 @@ class MovieDetailsActivity : AppCompatActivity() {
     }
 
     override fun onStop() {
-        startDisposable.dispose()
+        startDisposable.clear()
 
         super.onStop()
     }
