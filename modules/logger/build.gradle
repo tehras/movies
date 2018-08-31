@@ -3,4 +3,6 @@ apply from: "$rootDir/gradle/common-android.gradle"
 
 dependencies {
     api deps.timber
+
+    implementation deps.appCenterAnalytics
 }

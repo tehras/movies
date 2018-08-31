@@ -42,6 +42,13 @@ class MovieApplication : Application(), DaggerApplication, ComponentProvider<App
             Timber.plant(DebugTree())
         } else {
             Timber.plant(CrashReportingTree())
+            // App Center
+            AppCenter.start(
+                    this,
+                    "f205ec00-3465-4dbb-a65f-6fd65c4a9108",
+                    Analytics::class.java,
+                    Crashes::class.java
+            )
         }
 
         appComponent.plusApplication(this)
@@ -51,13 +58,5 @@ class MovieApplication : Application(), DaggerApplication, ComponentProvider<App
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
-
-        // App Center
-        AppCenter.start(
-                this,
-                "f205ec00-3465-4dbb-a65f-6fd65c4a9108",
-                Analytics::class.java,
-                Crashes::class.java
-        )
     }
 }

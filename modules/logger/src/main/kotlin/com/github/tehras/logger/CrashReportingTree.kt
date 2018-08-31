@@ -1,7 +1,8 @@
 package com.github.tehras.logger
 
 import android.util.Log
-import android.util.Log.INFO
+import android.util.Log.DEBUG
+import com.microsoft.appcenter.utils.AppCenterLog
 import timber.log.Timber
 
 /**
@@ -13,11 +14,16 @@ class CrashReportingTree : Timber.Tree() {
             return
         }
 
-        // TODO send to Crashlytics
+        when (priority) {
+            Log.ERROR -> AppCenterLog.error(tag, message, t)
+            Log.INFO -> AppCenterLog.info(tag, message, t)
+            Log.WARN -> AppCenterLog.warn(tag, message, t)
+            Log.ASSERT -> AppCenterLog.logAssert(tag, message, t)
+        }
     }
 
     override fun isLoggable(tag: String?, priority: Int): Boolean {
-        return priority > INFO
+        return priority > DEBUG
     }
 
 }
