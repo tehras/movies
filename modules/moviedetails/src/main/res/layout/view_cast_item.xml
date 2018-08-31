@@ -11,7 +11,7 @@
         android:layout_width="@dimen/profile_width"
         android:layout_height="@dimen/profile_height"
         android:contentDescription="@string/image_of_the_cast_member"
-        android:padding="4dp" />
+        android:padding="2dp" />
 
     <FrameLayout
         android:layout_width="@dimen/profile_width"
