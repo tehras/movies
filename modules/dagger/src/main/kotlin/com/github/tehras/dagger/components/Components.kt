@@ -1,6 +1,3 @@
-
-
-
 package com.github.tehras.dagger.components
 
 import android.app.Activity

@@ -1,6 +1,3 @@
-
-
-
 package com.github.tehras.views
 
 import android.content.Context
@@ -15,7 +12,7 @@ import kotlinx.android.synthetic.main.view_expandable_text_layout.view.*
  * @author tkoshkin created on 8/29/18
  */
 class ExpandableTextLayout @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+        context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
     private var isExpanded = false

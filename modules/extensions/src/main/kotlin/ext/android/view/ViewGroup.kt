@@ -1,6 +1,3 @@
-
-
-
 package ext.android.view
 
 import android.view.LayoutInflater

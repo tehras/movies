@@ -33,10 +33,10 @@ class MovieDetailsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         findComponent<MovieDetailsComponentCreator>()
-            ?.plusMovieDetailsActivity()
-            ?.movieId(intent.movieId)
-            ?.build()
-            ?.inject(this)
+                ?.plusMovieDetailsActivity()
+                ?.movieId(intent.movieId)
+                ?.build()
+                ?.inject(this)
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_details)
@@ -47,15 +47,15 @@ class MovieDetailsActivity : AppCompatActivity() {
         super.onStart()
 
         startDisposable += viewModel
-            .observeState()
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-                when (it.state) {
-                    MovieDetailsState.State.LOADING -> showLoading()
-                    MovieDetailsState.State.DONE -> populateMovieDetails(it.movieDetails)
-                    MovieDetailsState.State.ERROR -> TODO()
+                .observeState()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    when (it.state) {
+                        MovieDetailsState.State.LOADING -> showLoading()
+                        MovieDetailsState.State.DONE -> populateMovieDetails(it.movieDetails)
+                        MovieDetailsState.State.ERROR -> TODO()
+                    }
                 }
-            }
     }
 
     private fun populateMovieDetails(movieDetails: MovieDetails?) {
@@ -70,8 +70,8 @@ class MovieDetailsActivity : AppCompatActivity() {
 //                .into(movie_image)
 
             Picasso.get()
-                .load("$IMAGE_URL_LARGE${movie.backdropPath}")
-                .into(background_image)
+                    .load("$IMAGE_URL_LARGE${movie.backdropPath}")
+                    .into(background_image)
 
         } ?: kotlin.run {
             showError()
@@ -106,9 +106,9 @@ class MovieDetailsActivity : AppCompatActivity() {
     companion object {
         fun start(activity: Activity, id: Long) {
             activity.startActivity(
-                Intent(activity, MovieDetailsActivity::class.java).apply {
-                    movieId = id
-                }
+                    Intent(activity, MovieDetailsActivity::class.java).apply {
+                        movieId = id
+                    }
             )
         }
     }

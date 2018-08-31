@@ -16,7 +16,8 @@ private fun isAppCompatNightModeEnabled(): Boolean = when (AppCompatDelegate.get
 }
 
 var AppCompatActivity.darkTheme: Boolean
-    get() = when ((resources?.configuration?.uiMode ?: 0) and android.content.res.Configuration.UI_MODE_NIGHT_MASK) {
+    get() = when ((resources?.configuration?.uiMode
+            ?: 0) and android.content.res.Configuration.UI_MODE_NIGHT_MASK) {
         android.content.res.Configuration.UI_MODE_NIGHT_YES -> true
         android.content.res.Configuration.UI_MODE_NIGHT_NO -> isAppCompatNightModeEnabled() // sometimes it's not night mode, but the night theme is applied because of AppCompat, so trust the default value
         else -> isAppCompatNightModeEnabled() // could be Configuration.UI_MODE_NIGHT_UNDEFINED, check the default value in this case

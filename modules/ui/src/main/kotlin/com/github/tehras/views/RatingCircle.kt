@@ -1,6 +1,3 @@
-
-
-
 package com.github.tehras.views
 
 import android.annotation.SuppressLint
@@ -15,9 +12,9 @@ import kotlin.math.roundToInt
  * @author tkoshkin created on 8/28/18
  */
 class RatingCircle @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+        context: Context,
+        attrs: AttributeSet? = null,
+        defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
     init {

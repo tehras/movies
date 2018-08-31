@@ -1,6 +1,3 @@
-
-
-
 package com.github.tehras.restapi.tmdb.models.genres
 
 import com.squareup.moshi.Json

@@ -1,6 +1,3 @@
-
-
-
 package com.github.tehras.moshi
 
 import com.squareup.moshi.Moshi
@@ -17,7 +14,7 @@ class MoshiModule {
         @Provides
         @JvmStatic
         fun providesMoshi(): Moshi = Moshi
-            .Builder()
-            .build()
+                .Builder()
+                .build()
     }
 }

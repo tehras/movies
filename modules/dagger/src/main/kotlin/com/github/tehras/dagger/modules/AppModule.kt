@@ -1,6 +1,3 @@
-
-
-
 package com.github.tehras.dagger.modules
 
 import android.app.Application

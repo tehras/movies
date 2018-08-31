@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.Movies.DayNight" parent="Theme.Movies.Dark"/>
-    <style name="Theme.Movies.DayNight.NoActionBar" parent="Theme.Movies.Dark.NoActionBar"/>
+
+    <style name="Theme.Movies.DayNight" parent="Theme.Movies.Dark" />
+
+    <style name="Theme.Movies.DayNight.NoActionBar" parent="Theme.Movies.Dark.NoActionBar" />
 </resources>

@@ -1,6 +1,3 @@
-
-
-
 package com.github.tehras.restapi.tmdb
 
 import com.github.tehras.dagger.scopes.ApplicationScope
@@ -28,11 +25,11 @@ class TmdbServiceModule {
         @ApplicationScope
         fun provideRetrofit(okHttpClient: OkHttpClient, rxJava2CallAdapterFactory: RxJava2CallAdapterFactory, moshiConverterFactory: MoshiConverterFactory): Retrofit {
             return Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addCallAdapterFactory(rxJava2CallAdapterFactory)
-                .addConverterFactory(moshiConverterFactory)
-                .client(okHttpClient)
-                .build()
+                    .baseUrl(BASE_URL)
+                    .addCallAdapterFactory(rxJava2CallAdapterFactory)
+                    .addConverterFactory(moshiConverterFactory)
+                    .client(okHttpClient)
+                    .build()
         }
     }
 }

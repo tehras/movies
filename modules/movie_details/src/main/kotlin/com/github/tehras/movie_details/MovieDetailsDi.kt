@@ -35,6 +35,7 @@ interface MovieDetailsComponent {
     interface Builder {
         @BindsInstance
         fun movieId(id: Long): Builder
+
         fun build(): MovieDetailsComponent
     }
 }

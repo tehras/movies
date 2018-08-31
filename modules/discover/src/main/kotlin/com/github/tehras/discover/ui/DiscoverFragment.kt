@@ -2,11 +2,7 @@ package com.github.tehras.discover.ui
 
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.view.animation.DecelerateInterpolator
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -61,8 +57,8 @@ class DiscoverFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         findComponent<DiscoverComponentCreator>()
-            ?.plusDiscoverComponent()
-            ?.inject(this)
+                ?.plusDiscoverComponent()
+                ?.inject(this)
 
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
@@ -83,13 +79,13 @@ class DiscoverFragment : Fragment() {
         super.onStart()
 
         disposables += viewModel
-            .observeState()
-            .observeOn(AndroidSchedulers.mainThread())
-            .map {
-                DiscoverItems(State.DONE, it.discoverItems)
-            }
-            .doOnError { DiscoverItems(State.ERROR, mutableListOf()) }
-            .subscribe(adapter.consume())
+                .observeState()
+                .observeOn(AndroidSchedulers.mainThread())
+                .map {
+                    DiscoverItems(State.DONE, it.discoverItems)
+                }
+                .doOnError { DiscoverItems(State.ERROR, mutableListOf()) }
+                .subscribe(adapter.consume())
     }
 
     override fun onStop() {

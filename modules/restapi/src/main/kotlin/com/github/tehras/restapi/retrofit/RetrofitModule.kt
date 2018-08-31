@@ -1,6 +1,3 @@
-
-
-
 package com.github.tehras.restapi.retrofit
 
 import com.github.tehras.dagger.scopes.ApplicationScope
@@ -24,23 +21,23 @@ abstract class RetrofitModule {
         @ApplicationScope
         fun providesOkHttp(): OkHttpClient {
             return OkHttpClient.Builder()
-                .addNetworkInterceptor {
-                    // This is only present for Debugging Purposes
-                    val newRequest = it.request()
-                        .newBuilder()
-                        .build()
+                    .addNetworkInterceptor {
+                        // This is only present for Debugging Purposes
+                        val newRequest = it.request()
+                                .newBuilder()
+                                .build()
 
-                    Timber.d("Request :: url :: ${newRequest.url()}")
-                    Timber.d("Request :: url :: ${newRequest.headers()}")
+                        Timber.d("Request :: url :: ${newRequest.url()}")
+                        Timber.d("Request :: url :: ${newRequest.headers()}")
 
-                    val response = it.proceed(newRequest)
-                    Timber.d("Response :: success :: ${response.isSuccessful}")
-                    Timber.d("Response :: code :: ${response.code()}")
+                        val response = it.proceed(newRequest)
+                        Timber.d("Response :: success :: ${response.isSuccessful}")
+                        Timber.d("Response :: code :: ${response.code()}")
 
-                    // Keep it separated so you can check if the request looks correct
-                    return@addNetworkInterceptor response
-                }
-                .build()
+                        // Keep it separated so you can check if the request looks correct
+                        return@addNetworkInterceptor response
+                    }
+                    .build()
         }
 
         @Provides

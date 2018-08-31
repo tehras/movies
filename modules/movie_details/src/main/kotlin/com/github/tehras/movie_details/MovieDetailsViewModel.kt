@@ -13,24 +13,24 @@ import javax.inject.Inject
  * @author tkoshkin created on 8/29/18
  */
 class MovieDetailsViewModel @Inject constructor(
-    private val tmdbService: TmdbService,
-    private val movieId: Long
+        private val tmdbService: TmdbService,
+        private val movieId: Long
 ) : ObservableViewModel<MovieDetailsState, MovieDetailsUiEvent>() {
 
     override fun onCreate() {
         super.onCreate()
 
         tmdbService.movieDetails(movieId)
-            .subscribeOn(Schedulers.io())
-            .toObservable()
-            .map {
-                MovieDetailsState(MovieDetailsState.State.DONE, it)
-            }
-            .doOnError {
-                MovieDetailsState(MovieDetailsState.State.ERROR)
-            }
-            .startWith(MovieDetailsState(MovieDetailsState.State.LOADING))
-            .subscribeUntilDestroyed()
+                .subscribeOn(Schedulers.io())
+                .toObservable()
+                .map {
+                    MovieDetailsState(MovieDetailsState.State.DONE, it)
+                }
+                .doOnError {
+                    MovieDetailsState(MovieDetailsState.State.ERROR)
+                }
+                .startWith(MovieDetailsState(MovieDetailsState.State.LOADING))
+                .subscribeUntilDestroyed()
     }
 }
 

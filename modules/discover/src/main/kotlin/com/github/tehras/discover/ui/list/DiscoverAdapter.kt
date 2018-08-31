@@ -24,19 +24,19 @@ class DiscoverAdapter(private val clickConsumer: Consumer<Discover>) : RecyclerV
 
     init {
         relay
-            .observeOn(AndroidSchedulers.mainThread())
-            .startWith(DiscoverItems(State.LOADING, mutableListOf()))
-            .subscribe {
-                Timber.d("Results received - ${it.discoverList}")
-                val animate = discoverItems.state == State.LOADING && discoverItems.discoverList.isEmpty()
-                discoverItems = it
+                .observeOn(AndroidSchedulers.mainThread())
+                .startWith(DiscoverItems(State.LOADING, mutableListOf()))
+                .subscribe {
+                    Timber.d("Results received - ${it.discoverList}")
+                    val animate = discoverItems.state == State.LOADING && discoverItems.discoverList.isEmpty()
+                    discoverItems = it
 
-                if (animate) {
-                    notifyItemRangeInserted(0, discoverItems.discoverList.size)
-                } else {
-                    notifyDataSetChanged()
+                    if (animate) {
+                        notifyItemRangeInserted(0, discoverItems.discoverList.size)
+                    } else {
+                        notifyDataSetChanged()
+                    }
                 }
-            }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DiscoverViewHolder {

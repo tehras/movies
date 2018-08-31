@@ -1,6 +1,3 @@
-
-
-
 package ext.android.widget
 
 import android.widget.TextView

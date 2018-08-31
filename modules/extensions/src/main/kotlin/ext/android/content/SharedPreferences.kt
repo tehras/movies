@@ -1,6 +1,3 @@
-
-
-
 package ext.android.content
 
 import android.content.SharedPreferences

@@ -27,9 +27,9 @@ class DiscoverMovieViewHolder(itemView: View, private val clicked: Consumer<Disc
         this.discover = discover
 
         movie_clickable_layout
-            .clicks()
-            .map { discover }
-            .subscribe(clicked)
+                .clicks()
+                .map { discover }
+                .subscribe(clicked)
 
         movie_title.text = discover.title
         movie_description.text = discover.overview
@@ -40,17 +40,17 @@ class DiscoverMovieViewHolder(itemView: View, private val clicked: Consumer<Disc
         movie_genre_3.gone()
 
         discover.genres
-            .take(3)
-            .forEachIndexed { index, genre ->
-                genreView(index).run {
-                    setText(genre.name)
-                    visible()
+                .take(3)
+                .forEachIndexed { index, genre ->
+                    genreView(index).run {
+                        setText(genre.name)
+                        visible()
+                    }
                 }
-            }
 
         Picasso.get()
-            .load("$IMAGE_URL_SMALL${discover.posterPath}")
-            .into(movie_image)
+                .load("$IMAGE_URL_SMALL${discover.posterPath}")
+                .into(movie_image)
     }
 
     private fun genreView(index: Int): GenreOutline {

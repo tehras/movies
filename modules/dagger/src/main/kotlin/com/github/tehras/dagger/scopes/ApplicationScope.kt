@@ -1,6 +1,3 @@
-
-
-
 package com.github.tehras.dagger.scopes
 
 import javax.inject.Scope

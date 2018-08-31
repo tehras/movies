@@ -1,6 +1,3 @@
-
-
-
 package com.github.tehras.home
 
 import com.github.tehras.arch.ObservableViewModel

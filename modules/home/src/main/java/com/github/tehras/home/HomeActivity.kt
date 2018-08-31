@@ -18,8 +18,8 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         findComponent<HomeComponentCreator>()
-            ?.plusHomeActivity()
-            ?.inject(this)
+                ?.plusHomeActivity()
+                ?.inject(this)
 
         super.onCreate(savedInstanceState)
 
@@ -53,9 +53,9 @@ class HomeActivity : AppCompatActivity() {
         }
 
         supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fragment_container, fragment, tag)
-            .commit()
+                .beginTransaction()
+                .replace(R.id.fragment_container, fragment, tag)
+                .commit()
     }
 
 }
