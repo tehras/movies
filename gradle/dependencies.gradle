@@ -6,6 +6,7 @@ ext {
     def retrofitVer = "2.4.0"
     def archVer = "2.0.0-beta01"
     def moshiVer = "1.6.0"
+    def appCenterSdkVer = '1.8.0'
 
     deps = [
             module            : [
@@ -57,7 +58,10 @@ ext {
             appCompat         : "androidx.appcompat:appcompat:$supportLib",
             coordinatorLayout : "androidx.coordinatorlayout:coordinatorlayout:$supportLib",
             design            : "com.google.android.material:material:$supportLib",
-            constraintLayout  : "androidx.constraintlayout:constraintlayout:1.1.0"
+            constraintLayout  : "androidx.constraintlayout:constraintlayout:1.1.0",
+
+            appCenterAnalytics: "com.microsoft.appcenter:appcenter-analytics:${appCenterSdkVer}",
+            appCenterCrashes  : "com.microsoft.appcenter:appcenter-crashes:${appCenterSdkVer}"
     ]
 
 }
