@@ -10,24 +10,17 @@
         android:id="@+id/cast_image"
         android:layout_width="@dimen/profile_width"
         android:layout_height="@dimen/profile_height"
-        android:contentDescription="@string/image_of_the_cast_member"
-        android:padding="2dp" />
-
-    <FrameLayout
-        android:layout_width="@dimen/profile_width"
-        android:layout_height="@dimen/profile_height"
         android:background="@drawable/image_frame"
-        android:elevation="@dimen/elevation_standard" />
+        android:contentDescription="@string/image_of_the_cast_member"
+        android:padding="3dp" />
 
     <TextView
         android:id="@+id/cast_name"
         style="@style/TextAppearance.AppCompat.Small"
-        android:layout_width="@dimen/profile_width"
+        android:layout_width="@dimen/profile_width_text"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginStart="2dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginBottom="3dp"
         android:background="?bgPrimaryTransparent"
         android:ellipsize="end"
         android:gravity="center"
@@ -37,16 +30,13 @@
         android:textSize="12sp"
         tools:text="Taras Koshkin" />
 
-
     <TextView
         android:id="@+id/cast_role"
         style="@style/TextAppearance.AppCompat.Small"
-        android:layout_width="@dimen/profile_width"
+        android:layout_width="@dimen/profile_width_text"
         android:layout_height="wrap_content"
         android:layout_gravity="top|center_horizontal"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="2dp"
+        android:layout_marginTop="3dp"
         android:background="?bgPrimaryTransparent"
         android:ellipsize="end"
         android:gravity="center"
@@ -55,6 +45,5 @@
         android:textColor="?attr/typePrimary"
         android:textSize="14sp"
         tools:text="Taras Koshkin" />
-
 
 </FrameLayout>

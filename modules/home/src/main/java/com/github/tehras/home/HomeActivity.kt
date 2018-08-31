@@ -28,6 +28,7 @@ class HomeActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             bottom_nav_view.selectedItemId = R.id.home_discover
+            startDiscoverFragment()
         }
     }
 

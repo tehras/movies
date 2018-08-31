@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="profile_width">106dp</dimen>
+    <dimen name="profile_width">110dp</dimen>
+    <dimen name="profile_width_text">104dp</dimen>
     <dimen name="profile_height">160dp</dimen>
 </resources>
