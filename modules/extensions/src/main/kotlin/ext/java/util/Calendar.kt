@@ -1,6 +1,6 @@
-/*
- * Copyright (c) 2018 Evernote Corporation. All rights reserved.
- */
+
+
+
 package ext.java.util
 
 import java.util.Calendar

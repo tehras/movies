@@ -1,6 +1,3 @@
-/*
- * Copyright (c) 2018 Evernote Corporation. All rights reserved.
- */
 package com.github.tehras.moviefunfact.app
 
 import android.app.Application
@@ -35,8 +32,8 @@ class MovieApplication : Application(), DaggerApplication, ComponentProvider<App
         super.onCreate()
 
         appComponent = DaggerAppComponent.builder()
-            .application(this)
-            .build()
+                .application(this)
+                .build()
 
         if (BuildConfig.DEBUG) {
             Timber.plant(DebugTree())

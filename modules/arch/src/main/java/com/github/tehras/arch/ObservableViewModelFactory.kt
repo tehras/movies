@@ -1,6 +1,3 @@
-/*
- * Copyright (c) 2018 Evernote Corporation. All rights reserved.
- */
 package com.github.tehras.arch
 
 import androidx.fragment.app.Fragment
@@ -19,35 +16,35 @@ import kotlin.reflect.KProperty
  * how to use this method with Dagger.
  */
 inline fun <reified T : ObservableViewModel<*, *>> viewModelActivity(crossinline factoryProvider: () -> ViewModelProvider.Factory): ReadOnlyProperty<FragmentActivity, T> =
-    object : ReadOnlyProperty<FragmentActivity, T> {
-        private var instance: T? = null
+        object : ReadOnlyProperty<FragmentActivity, T> {
+            private var instance: T? = null
 
-        override fun getValue(thisRef: FragmentActivity, property: KProperty<*>): T {
-            if (instance == null) {
-                instance = ViewModelProviders.of(thisRef, factoryProvider.invoke()).get(T::class.java).also {
-                    thisRef.lifecycle.addObserver(ObservableViewModelInstructor(it))
+            override fun getValue(thisRef: FragmentActivity, property: KProperty<*>): T {
+                if (instance == null) {
+                    instance = ViewModelProviders.of(thisRef, factoryProvider.invoke()).get(T::class.java).also {
+                        thisRef.lifecycle.addObserver(ObservableViewModelInstructor(it))
+                    }
                 }
-            }
 
-            return instance!!
+                return instance!!
+            }
         }
-    }
 
 /**
  * Binds the view model to the fragment where this delegate is used. See [ObservableViewModel] for recommendations
  * how to use this method with Dagger.
  */
 inline fun <reified T : ObservableViewModel<*, *>> viewModel(crossinline factoryProvider: () -> ViewModelProvider.Factory): ReadOnlyProperty<Fragment, T> =
-    object : ReadOnlyProperty<Fragment, T> {
-        private var instance: T? = null
+        object : ReadOnlyProperty<Fragment, T> {
+            private var instance: T? = null
 
-        override fun getValue(thisRef: Fragment, property: KProperty<*>): T {
-            if (instance == null) {
-                instance = ViewModelProviders.of(thisRef, factoryProvider.invoke()).get(T::class.java).also {
-                    thisRef.lifecycle.addObserver(ObservableViewModelInstructor(it))
+            override fun getValue(thisRef: Fragment, property: KProperty<*>): T {
+                if (instance == null) {
+                    instance = ViewModelProviders.of(thisRef, factoryProvider.invoke()).get(T::class.java).also {
+                        thisRef.lifecycle.addObserver(ObservableViewModelInstructor(it))
+                    }
                 }
-            }
 
-            return instance!!
+                return instance!!
+            }
         }
-    }

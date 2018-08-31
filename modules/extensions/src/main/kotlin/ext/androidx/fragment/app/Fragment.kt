@@ -1,6 +1,3 @@
-/*
- * Copyright (c) 2018 Evernote Corporation. All rights reserved.
- */
 package ext.androidx.fragment.app
 
 import androidx.appcompat.app.AppCompatActivity

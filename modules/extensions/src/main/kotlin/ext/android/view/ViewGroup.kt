@@ -1,6 +1,6 @@
-/*
- * Copyright (c) 2018 Evernote Corporation. All rights reserved.
- */
+
+
+
 package ext.android.view
 
 import android.view.LayoutInflater

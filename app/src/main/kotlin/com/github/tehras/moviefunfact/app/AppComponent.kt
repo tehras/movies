@@ -1,6 +1,3 @@
-/*
- * Copyright (c) 2018 Evernote Corporation. All rights reserved.
- */
 package com.github.tehras.moviefunfact.app
 
 import android.app.Application
@@ -22,18 +19,18 @@ import dagger.Component
 @Suppress("unused")
 @ApplicationScope
 @Component(
-    modules = [
-        AppModule::class,
-        RetrofitModule::class,
-        TmdbServiceModule::class,
-        MoshiModule::class
-    ]
+        modules = [
+            AppModule::class,
+            RetrofitModule::class,
+            TmdbServiceModule::class,
+            MoshiModule::class
+        ]
 )
 interface AppComponent :
-    MainComponent,
-    HomeComponentCreator,
-    MovieDetailsComponentCreator,
-    DiscoverComponentCreator {
+        MainComponent,
+        HomeComponentCreator,
+        MovieDetailsComponentCreator,
+        DiscoverComponentCreator {
 
     fun plusApplication(application: MovieApplication)
 

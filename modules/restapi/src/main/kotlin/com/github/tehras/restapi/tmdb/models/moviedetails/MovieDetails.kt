@@ -1,6 +1,6 @@
-/*
- * Copyright (c) 2018 Evernote Corporation. All rights reserved.
- */
+
+
+
 package com.github.tehras.restapi.tmdb.models.moviedetails
 
 import com.github.tehras.restapi.tmdb.models.genres.Genre
