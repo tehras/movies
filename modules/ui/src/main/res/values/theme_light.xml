@@ -13,6 +13,7 @@
 
         <item name="appBar">@color/app_bar_light</item>
         <item name="bgPrimary">@color/bg_primary_light</item>
+        <item name="bgPrimaryTransparent">@color/bg_primary_light_transparent</item>
 
         <item name="typePrimary">@color/type_primary_light</item>
         <item name="typeSecondary">@color/type_secondary_light</item>

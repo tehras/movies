@@ -1,6 +1,7 @@
 package com.github.tehras.restapi.tmdb
 
 import com.github.tehras.dagger.scopes.ApplicationScope
+import com.github.tehras.restapi.tmdb.models.cast.Credits
 import com.github.tehras.restapi.tmdb.models.discover.DiscoverResponse
 import com.github.tehras.restapi.tmdb.models.genres.GenresResponse
 import com.github.tehras.restapi.tmdb.models.moviedetails.MovieDetails
@@ -27,6 +28,9 @@ interface TmdbService {
 
     @GET("/3/movie/{movie_id}?api_key=$API_KEY")
     fun movieDetails(@Path("movie_id") id: Long): Single<MovieDetails>
+
+    @GET("/3/movie/{movie_id}/credits?api_key=$API_KEY")
+    fun credits(@Path("movie_id") id: Long): Single<Credits>
 }
 
 private fun today(): String {

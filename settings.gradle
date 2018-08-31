@@ -6,6 +6,6 @@ include ':app',
         'modules:arch',
         'modules:dagger',
         'modules:home',
-        'modules:movie_details',
+        'modules:moviedetails',
         'modules:restapi',
         'modules:extensions'

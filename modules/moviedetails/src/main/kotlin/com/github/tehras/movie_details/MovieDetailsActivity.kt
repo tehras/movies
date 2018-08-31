@@ -1,6 +1,3 @@
-/*
-
- */
 package com.github.tehras.movie_details
 
 import android.app.Activity
@@ -8,14 +5,18 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.tehras.arch.viewModelActivity
 import com.github.tehras.dagger.components.findComponent
+import com.github.tehras.movie_details.castadapter.CastAdapter
 import com.github.tehras.restapi.tmdb.IMAGE_URL_LARGE
 import com.github.tehras.restapi.tmdb.models.moviedetails.MovieDetails
 import com.squareup.picasso.Picasso
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.functions.Consumer
 import io.reactivex.rxkotlin.plusAssign
+import jp.wasabeef.recyclerview.animators.SlideInRightAnimator
 import kotlinx.android.synthetic.main.activity_movie_details.*
 import kotlinx.android.synthetic.main.content_movie_details.*
 import javax.inject.Inject
@@ -29,6 +30,8 @@ class MovieDetailsActivity : AppCompatActivity() {
     lateinit var factory: ViewModelProvider.Factory
     private val viewModel by viewModelActivity<MovieDetailsViewModel> { factory }
 
+    private val castAdapter by lazy { CastAdapter() }
+
     private val startDisposable = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +43,9 @@ class MovieDetailsActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_details)
+
         initToolbar()
+        initRecyclerView()
     }
 
     override fun onStart() {
@@ -48,36 +53,22 @@ class MovieDetailsActivity : AppCompatActivity() {
 
         startDisposable += viewModel
                 .observeState()
+                .filter { it.state == MovieDetailsState.State.DONE && it.movieDetails != null }
+                .map { it.movieDetails!! }
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    when (it.state) {
-                        MovieDetailsState.State.LOADING -> showLoading()
-                        MovieDetailsState.State.DONE -> populateMovieDetails(it.movieDetails)
-                        MovieDetailsState.State.ERROR -> TODO()
-                    }
-                }
+                .subscribe(movieDetailsConsumer)
+
+        startDisposable += viewModel
+                .observeState()
+                .filter { it.cast.isNotEmpty() }
+                .map { it.cast }
+                .subscribe(castAdapter.consume())
     }
 
-    private fun populateMovieDetails(movieDetails: MovieDetails?) {
-        movieDetails?.let { movie ->
-            movie_details_toolbar.title = movie.title
-            collapsing_toolbar_layout.title = movie.title
+    override fun onStop() {
+        startDisposable.dispose()
 
-            movie_description.setText(movie.overview!!)
-
-//            Picasso.get()
-//                .load("$IMAGE_URL_SMALL${movie.posterPath}")
-//                .into(movie_image)
-
-            Picasso.get()
-                    .load("$IMAGE_URL_LARGE${movie.backdropPath}")
-                    .into(background_image)
-
-        } ?: kotlin.run {
-            showError()
-        }
-
-
+        super.onStop()
     }
 
     private fun showLoading() {
@@ -88,10 +79,25 @@ class MovieDetailsActivity : AppCompatActivity() {
         // TODO
     }
 
-    override fun onStop() {
-        super.onStop()
+    private val movieDetailsConsumer: Consumer<MovieDetails> = Consumer { movie ->
+        movie_details_toolbar.title = movie.title
+        collapsing_toolbar_layout.title = movie.title
 
-        startDisposable.dispose()
+        movie_description.setText(movie.overview!!)
+
+        Picasso.get()
+                .load("$IMAGE_URL_LARGE${movie.backdropPath}")
+                .into(background_image)
+    }
+
+    private fun initRecyclerView() {
+        movie_cast.run {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(this@MovieDetailsActivity, LinearLayoutManager.HORIZONTAL, false)
+            itemAnimator = SlideInRightAnimator()
+            adapter = castAdapter
+        }
+
     }
 
     private fun initToolbar() {

@@ -12,7 +12,7 @@ ext {
                     arch        : project(':modules:arch'),
                     dagger      : project(':modules:dagger'),
                     home        : project(':modules:home'),
-                    movieDetails: project(':modules:movie_details'),
+                    movieDetails: project(':modules:moviedetails'),
                     logger      : project(':modules:logger'),
                     restApi     : project(':modules:restapi'),
                     extensions  : project(':modules:extensions'),
