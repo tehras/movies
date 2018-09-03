@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.tehras.arch.viewModelActivity
 import com.github.tehras.dagger.components.findComponent
 import com.github.tehras.movie_details.castadapter.CastAdapter
-import com.github.tehras.movie_details.reviewsadapter.ReviewsAdapter
 import com.github.tehras.restapi.tmdb.IMAGE_URL_LARGE
 import com.github.tehras.restapi.tmdb.models.moviedetails.MovieDetails
 import com.squareup.picasso.Picasso
@@ -33,7 +32,6 @@ class MovieDetailsActivity : AppCompatActivity() {
     private val viewModel by viewModelActivity<MovieDetailsViewModel> { factory }
 
     private val castAdapter by lazy { CastAdapter() }
-    private val reviewsAdapter by lazy { ReviewsAdapter() }
 
     private val startDisposable = CompositeDisposable()
 
@@ -71,7 +69,7 @@ class MovieDetailsActivity : AppCompatActivity() {
                 .observeState()
                 .filter { it.reviews.isNotEmpty() && it.movieDetails != null }
                 .map { Pair(it.movieDetails!!, it.reviews) }
-                .subscribe(reviewsAdapter.consume())
+                .subscribe(movie_reviews.consume())
     }
 
     override fun onStop() {
@@ -106,14 +104,6 @@ class MovieDetailsActivity : AppCompatActivity() {
             itemAnimator = SlideInRightAnimator()
             adapter = castAdapter
         }
-
-        movie_reviews.run {
-            setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(this@MovieDetailsActivity, LinearLayoutManager.HORIZONTAL, false)
-            itemAnimator = SlideInRightAnimator()
-            adapter = reviewsAdapter
-        }
-
     }
 
     private fun initToolbar() {

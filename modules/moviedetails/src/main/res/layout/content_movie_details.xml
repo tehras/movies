@@ -23,12 +23,11 @@
         android:textColor="?attr/typePrimary"
         android:textStyle="bold" />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.github.tehras.movie_details.ReviewsView
         android:id="@+id/movie_reviews"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/vertical_margin"
-        tools:layout_height="100dp" />
+        android:layout_marginTop="@dimen/vertical_margin" />
 
     <TextView
         android:id="@+id/movie_cast_title"
