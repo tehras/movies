@@ -27,7 +27,7 @@
         android:id="@+id/movie_reviews"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/vertical_margin" />
+        android:layout_marginTop="@dimen/vertical_margin"/>
 
     <TextView
         android:id="@+id/movie_cast_title"

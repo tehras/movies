@@ -64,6 +64,7 @@ class ReviewsView @JvmOverloads constructor(
 
     private fun updateReview(view: View, review: Review) {
         view.review_name.text = review.author
+        @Suppress("DEPRECATION")
         view.review_content.text = Html.fromHtml(review.content)
     }
 }
