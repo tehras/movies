@@ -1,13 +1,11 @@
-package com.github.tehras.restapi.tmdb
+package com.github.tehras.restapi.tmdb.discover
 
 import com.github.tehras.dagger.scopes.ApplicationScope
-import com.github.tehras.restapi.tmdb.models.cast.Credits
+import com.github.tehras.restapi.tmdb.API_KEY
 import com.github.tehras.restapi.tmdb.models.discover.DiscoverResponse
 import com.github.tehras.restapi.tmdb.models.genres.GenresResponse
-import com.github.tehras.restapi.tmdb.models.moviedetails.MovieDetails
 import io.reactivex.Single
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 import java.util.*
 
@@ -25,12 +23,6 @@ interface TmdbService {
 
     @GET("/3/genre/movie/list?api_key=$API_KEY")
     fun genres(): Single<GenresResponse>
-
-    @GET("/3/movie/{movie_id}?api_key=$API_KEY")
-    fun movieDetails(@Path("movie_id") id: Long): Single<MovieDetails>
-
-    @GET("/3/movie/{movie_id}/credits?api_key=$API_KEY")
-    fun credits(@Path("movie_id") id: Long): Single<Credits>
 }
 
 private fun today(): String {

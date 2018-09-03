@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.tehras.arch.viewModelActivity
 import com.github.tehras.dagger.components.findComponent
 import com.github.tehras.movie_details.castadapter.CastAdapter
+import com.github.tehras.movie_details.reviewsadapter.ReviewsAdapter
 import com.github.tehras.restapi.tmdb.IMAGE_URL_LARGE
 import com.github.tehras.restapi.tmdb.models.moviedetails.MovieDetails
 import com.squareup.picasso.Picasso
@@ -18,6 +19,7 @@ import io.reactivex.functions.Consumer
 import io.reactivex.rxkotlin.plusAssign
 import jp.wasabeef.recyclerview.animators.SlideInRightAnimator
 import kotlinx.android.synthetic.main.activity_movie_details.*
+import kotlinx.android.synthetic.main.content_movie_description.*
 import kotlinx.android.synthetic.main.content_movie_details.*
 import javax.inject.Inject
 
@@ -31,6 +33,7 @@ class MovieDetailsActivity : AppCompatActivity() {
     private val viewModel by viewModelActivity<MovieDetailsViewModel> { factory }
 
     private val castAdapter by lazy { CastAdapter() }
+    private val reviewsAdapter by lazy { ReviewsAdapter() }
 
     private val startDisposable = CompositeDisposable()
 
@@ -45,7 +48,7 @@ class MovieDetailsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_movie_details)
 
         initToolbar()
-        initRecyclerView()
+        initRecyclerViews()
     }
 
     override fun onStart() {
@@ -63,6 +66,12 @@ class MovieDetailsActivity : AppCompatActivity() {
                 .filter { it.cast.isNotEmpty() }
                 .map { it.cast }
                 .subscribe(castAdapter.consume())
+
+        startDisposable += viewModel
+                .observeState()
+                .filter { it.reviews.isNotEmpty() && it.movieDetails != null }
+                .map { Pair(it.movieDetails!!, it.reviews) }
+                .subscribe(reviewsAdapter.consume())
     }
 
     override fun onStop() {
@@ -90,12 +99,19 @@ class MovieDetailsActivity : AppCompatActivity() {
                 .into(background_image)
     }
 
-    private fun initRecyclerView() {
+    private fun initRecyclerViews() {
         movie_cast.run {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(this@MovieDetailsActivity, LinearLayoutManager.HORIZONTAL, false)
             itemAnimator = SlideInRightAnimator()
             adapter = castAdapter
+        }
+
+        movie_reviews.run {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(this@MovieDetailsActivity, LinearLayoutManager.HORIZONTAL, false)
+            itemAnimator = SlideInRightAnimator()
+            adapter = reviewsAdapter
         }
 
     }
@@ -112,9 +128,7 @@ class MovieDetailsActivity : AppCompatActivity() {
     companion object {
         fun start(activity: Activity, id: Long) {
             activity.startActivity(
-                    Intent(activity, MovieDetailsActivity::class.java).apply {
-                        movieId = id
-                    }
+                    Intent(activity, MovieDetailsActivity::class.java).apply { movieId = id }
             )
         }
     }

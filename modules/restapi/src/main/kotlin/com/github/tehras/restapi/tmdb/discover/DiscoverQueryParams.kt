@@ -1,4 +1,4 @@
-package com.github.tehras.restapi.tmdb
+package com.github.tehras.restapi.tmdb.discover
 
 /**
  * @author tkoshkin created on 8/26/18

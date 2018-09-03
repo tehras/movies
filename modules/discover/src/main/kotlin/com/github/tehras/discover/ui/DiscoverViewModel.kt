@@ -2,8 +2,8 @@ package com.github.tehras.discover.ui
 
 import android.annotation.SuppressLint
 import com.github.tehras.arch.ObservableViewModel
-import com.github.tehras.restapi.tmdb.SortBy
-import com.github.tehras.restapi.tmdb.TmdbService
+import com.github.tehras.restapi.tmdb.discover.SortBy
+import com.github.tehras.restapi.tmdb.discover.TmdbService
 import com.github.tehras.restapi.tmdb.models.discover.Discover
 import com.github.tehras.restapi.tmdb.models.genres.Genre
 import com.github.tehras.restapi.tmdb.models.genres.GenresResponse

@@ -5,8 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.github.tehras.movie_details.R
 import com.github.tehras.restapi.tmdb.models.cast.Cast
-import com.jakewharton.rxrelay2.BehaviorRelay
+import com.jakewharton.rxrelay2.PublishRelay
 import ext.android.view.inflateView
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Consumer
 import io.reactivex.rxkotlin.subscribeBy
 
@@ -14,20 +15,16 @@ import io.reactivex.rxkotlin.subscribeBy
 class CastAdapter : RecyclerView.Adapter<CastViewHolder>() {
     private val cast: MutableList<Cast> = mutableListOf()
 
-    private val relay = BehaviorRelay.create<MutableList<Cast>>()
+    private val relay = PublishRelay.create<MutableList<Cast>>()
     fun consume(): Consumer<MutableList<Cast>> = relay.also { relay ->
-        relay.subscribeBy {
-            val animate = cast.isEmpty()
+        relay
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeBy {
+                    cast.clear()
+                    cast.addAll(it)
 
-            cast.clear()
-            cast.addAll(it)
-
-            if (animate) {
-                notifyItemRangeInserted(0, cast.size)
-            } else {
-                notifyDataSetChanged()
-            }
-        }
+                    notifyDataSetChanged()
+                }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CastViewHolder {

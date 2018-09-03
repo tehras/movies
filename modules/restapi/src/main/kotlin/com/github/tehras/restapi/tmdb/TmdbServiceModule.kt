@@ -1,6 +1,8 @@
 package com.github.tehras.restapi.tmdb
 
 import com.github.tehras.dagger.scopes.ApplicationScope
+import com.github.tehras.restapi.tmdb.discover.TmdbService
+import com.github.tehras.restapi.tmdb.movies.MoviesService
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -19,6 +21,11 @@ class TmdbServiceModule {
         @JvmStatic
         @ApplicationScope
         fun provideTmdbService(retrofit: Retrofit): TmdbService = retrofit.create(TmdbService::class.java)
+
+        @Provides
+        @JvmStatic
+        @ApplicationScope
+        fun provideMovieService(retrofit: Retrofit): MoviesService = retrofit.create(MoviesService::class.java)
 
         @Provides
         @JvmStatic
