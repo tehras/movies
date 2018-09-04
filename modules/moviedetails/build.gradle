@@ -4,6 +4,8 @@ apply from: "$rootDir/gradle/common-ui.gradle"
 
 dependencies {
     implementation deps.module.arch
+    implementation deps.module.extensions
+
     implementation deps.picasso
     implementation deps.adapterAnimator
 }

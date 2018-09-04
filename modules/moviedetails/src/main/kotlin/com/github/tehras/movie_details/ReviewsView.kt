@@ -11,6 +11,7 @@ import com.github.tehras.restapi.tmdb.models.reviews.Review
 import com.jakewharton.rxrelay2.PublishRelay
 import ext.android.view.gone
 import ext.android.view.visible
+import ext.kotlin.formatWithCommas
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import kotlinx.android.synthetic.main.content_reviews.view.*
@@ -50,7 +51,7 @@ class ReviewsView @JvmOverloads constructor(
     private fun updateTotalRatings() {
         details?.let {
             reviews_rating.setProgress(it.voteAverage.times(10))
-            reviews_total_ratings.text = "${it.voteCount.toInt()} reviews"
+            reviews_total_ratings.text = "${it.voteCount.toInt().formatWithCommas()} reviews"
         }
     }
 

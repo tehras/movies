@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:layout_margin="2dp"
@@ -14,10 +15,14 @@
 
     <TextView
         android:id="@+id/reviews_total_ratings"
-        style="@style/TextAppearance.AppCompat.Small"
+        style="@style/TextAppearance.AppCompat.Caption"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:lines="2"
         android:textAlignment="center"
-        android:textColor="?attr/typePrimary" />
+        android:textColor="?attr/typePrimary"
+        tools:text="123413413 reviews" />
 
 </LinearLayout>
