@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="profile_width">136dp</dimen>
-    <dimen name="profile_width_text">130dp</dimen>
+    <dimen name="profile_width_text">136dp</dimen>
     <dimen name="profile_height">200dp</dimen>
     <dimen name="reviews_width">160dp</dimen>
     <dimen name="reviews_height">200dp</dimen>

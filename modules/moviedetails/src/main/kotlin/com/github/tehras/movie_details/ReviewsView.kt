@@ -9,6 +9,8 @@ import android.widget.FrameLayout
 import com.github.tehras.restapi.tmdb.models.moviedetails.MovieDetails
 import com.github.tehras.restapi.tmdb.models.reviews.Review
 import com.jakewharton.rxrelay2.PublishRelay
+import ext.android.view.gone
+import ext.android.view.visible
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import kotlinx.android.synthetic.main.content_reviews.view.*
@@ -53,6 +55,9 @@ class ReviewsView @JvmOverloads constructor(
     }
 
     private fun updateReviews() {
+        review_1.gone()
+        review_2.gone()
+
         reviews.getOrNull(0)?.let {
             updateReview(review_1, it)
         }
@@ -63,6 +68,8 @@ class ReviewsView @JvmOverloads constructor(
     }
 
     private fun updateReview(view: View, review: Review) {
+        view.visible()
+
         view.review_name.text = review.author
         @Suppress("DEPRECATION")
         view.review_content.text = Html.fromHtml(review.content)

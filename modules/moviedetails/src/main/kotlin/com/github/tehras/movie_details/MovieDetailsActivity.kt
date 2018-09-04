@@ -12,6 +12,8 @@ import com.github.tehras.movie_details.castadapter.CastAdapter
 import com.github.tehras.restapi.tmdb.IMAGE_URL_LARGE
 import com.github.tehras.restapi.tmdb.models.moviedetails.MovieDetails
 import com.squareup.picasso.Picasso
+import ext.android.view.gone
+import ext.android.view.visible
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Consumer
@@ -67,7 +69,16 @@ class MovieDetailsActivity : AppCompatActivity() {
 
         startDisposable += viewModel
                 .observeState()
-                .filter { it.reviews.isNotEmpty() && it.movieDetails != null }
+                .filter { it.movieDetails != null }
+                .doOnNext {
+                    if (it.movieDetails?.voteCount ?: 0.0 == 0.0) {
+                        movie_reviews.gone()
+                        movie_reviews_title.gone()
+                    } else {
+                        movie_reviews.visible()
+                        movie_reviews_title.visible()
+                    }
+                }
                 .map { Pair(it.movieDetails!!, it.reviews) }
                 .subscribe(movie_reviews.consume())
     }
