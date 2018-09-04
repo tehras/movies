@@ -32,8 +32,6 @@ class MovieApplication : Application(), DaggerApplication, ComponentProvider<App
     lateinit var sharedPrefs: SharedPreferences
 
     override fun onCreate() {
-        super.onCreate()
-
         appComponent = DaggerAppComponent.builder()
                 .application(this)
                 .build()
@@ -58,5 +56,9 @@ class MovieApplication : Application(), DaggerApplication, ComponentProvider<App
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
+
+        Timber.d("Creating application")
+
+        super.onCreate()
     }
 }

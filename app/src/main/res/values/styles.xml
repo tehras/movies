@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Movies.DayNight.SplashScreen">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+
+        <item name="colorPrimary">@color/secondary_color_dark</item>
+        <item name="colorPrimaryDark">@color/secondary_color_dark_dark</item>
+    </style>
+</resources>

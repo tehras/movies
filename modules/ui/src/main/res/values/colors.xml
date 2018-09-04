@@ -17,9 +17,9 @@
     <color name="primary_color_light">#fafafa</color>
     <color name="primary_color_dark_light">#4f5b62</color>
 
-    <color name="secondary_color_light_light">#ffc1e3</color>
-    <color name="secondary_color_light">#f48fb1</color>
-    <color name="secondary_color_dark_light">#bf5f82</color>
+    <color name="secondary_color_light_light">#ff77a9</color>
+    <color name="secondary_color_light">#ec407a</color>
+    <color name="secondary_color_dark_light">#b4004e</color>
     <!--<color name="secondary_color_light_light">#d1d9ff</color>-->
     <!--<color name="secondary_color_light">#9fa8da</color>-->
     <!--<color name="secondary_color_dark_light">#6f79a8</color>-->
@@ -38,7 +38,7 @@
     <color name="primary_color_dark">#263238</color>
     <color name="primary_color_dark_dark">#000a12</color>
 
-    <color name="secondary_color_light_dark">#ffc1e3</color>
-    <color name="secondary_color_dark">#f48fb1</color>
-    <color name="secondary_color_dark_dark">#bf5f82</color>
+    <color name="secondary_color_light_dark">#ff77a9</color>
+    <color name="secondary_color_dark">#ec407a</color>
+    <color name="secondary_color_dark_dark">#b4004e</color>
 </resources>
