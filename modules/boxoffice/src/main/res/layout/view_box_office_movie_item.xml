@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/movie_clickable_layout"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/movie_clickable_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground"
-    android:padding="@dimen/default_padding">
+    android:padding="@dimen/default_padding"
+    tools:theme="@style/Theme.Movies.DayNight.NoActionBar">
 
     <ImageView
         android:id="@+id/movie_image"
@@ -16,7 +17,7 @@
         android:contentDescription="@string/movie_title"
         android:scaleType="fitStart"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/movie_title"
         tools:src="@android:drawable/ic_input_add" />
 
@@ -87,7 +88,7 @@
         android:id="@+id/movie_rating"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/movie_title" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

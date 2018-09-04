@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.github.tehras.arch.viewModelActivity
+import com.github.tehras.boxoffice.BoxOfficeFragment
 import com.github.tehras.dagger.components.findComponent
 import com.github.tehras.discover.ui.DiscoverFragment
 import kotlinx.android.synthetic.main.activity_home.*
@@ -36,6 +37,7 @@ class HomeActivity : AppCompatActivity() {
         bottom_nav_view.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.home_discover -> startDiscoverFragment()
+                R.id.home_box_office -> startBoxOfficeFragment()
             }
 
             true
@@ -44,6 +46,10 @@ class HomeActivity : AppCompatActivity() {
 
     private fun startDiscoverFragment() {
         startFragment(DiscoverFragment.newInstance(), "discover_fragment")
+    }
+
+    private fun startBoxOfficeFragment() {
+        startFragment(BoxOfficeFragment.newInstance(), "box_office_fragment")
     }
 
     private fun startFragment(fragment: Fragment, tag: String) {

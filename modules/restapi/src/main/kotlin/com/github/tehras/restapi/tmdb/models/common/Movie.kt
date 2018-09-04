@@ -1,23 +1,12 @@
-package com.github.tehras.restapi.tmdb.models.discover
+package com.github.tehras.restapi.tmdb.models.common
 
 import com.github.tehras.restapi.tmdb.models.genres.Genre
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import java.util.*
 
-/**
- * @author tkoshkin created on 8/26/18
- */
 @JsonClass(generateAdapter = true)
-data class DiscoverResponse(
-        val page: Int,
-        val results: List<Discover>,
-        @Json(name = "total_results") val totalResults: Int,
-        @Json(name = "total_pages") val totalPages: Int
-)
-
-@JsonClass(generateAdapter = true)
-data class Discover(
+open class Movie(
         @Json(name = "poster_path") val posterPath: String?,
         val adult: Boolean,
         val overview: String?,
@@ -33,13 +22,12 @@ data class Discover(
         val video: Boolean,
         @Json(name = "vote_average") val voteAverage: Double,
         @Transient val genres: MutableList<Genre> = mutableListOf()
-
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as Discover
+        other as Movie
 
         if (posterPath != other.posterPath) return false
         if (adult != other.adult) return false

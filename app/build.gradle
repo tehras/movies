@@ -29,6 +29,7 @@ dependencies {
     // UI Modules
     implementation deps.module.home
     implementation deps.module.discover
+    implementation deps.module.boxoffice
     implementation deps.module.movieDetails
 
     implementation deps.appCenterAnalytics

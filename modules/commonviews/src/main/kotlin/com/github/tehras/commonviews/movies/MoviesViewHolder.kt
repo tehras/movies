@@ -1,10 +1,10 @@
-package com.github.tehras.discover.ui.list
+package com.github.tehras.commonviews.movies
 
 import android.annotation.SuppressLint
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.github.tehras.restapi.tmdb.IMAGE_URL_SMALL
-import com.github.tehras.restapi.tmdb.models.discover.Discover
+import com.github.tehras.restapi.tmdb.models.common.Movie
 import com.github.tehras.views.GenreOutline
 import com.jakewharton.rxbinding2.view.clicks
 import com.squareup.picasso.Picasso
@@ -17,13 +17,13 @@ import kotlinx.android.synthetic.main.discover_view_body.*
 /**
  * @author tkoshkin created on 8/27/18
  */
-sealed class DiscoverViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer
+sealed class MoviesViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer
 
-class DiscoverMovieViewHolder(itemView: View, private val clicked: Consumer<Discover>) : DiscoverViewHolder(itemView) {
-    lateinit var discover: Discover
+class MoviesBodyViewHolder(itemView: View, private val clicked: Consumer<Movie>) : MoviesViewHolder(itemView) {
+    lateinit var discover: Movie
 
     @SuppressLint("CheckResult")
-    fun bind(discover: Discover) {
+    fun bind(discover: Movie) {
         this.discover = discover
 
         movie_clickable_layout

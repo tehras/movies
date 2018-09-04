@@ -11,6 +11,8 @@ ext {
     deps = [
             module            : [
                     arch        : project(':modules:arch'),
+                    boxoffice   : project(':modules:boxoffice'),
+                    commonViews : project(':modules:commonviews'),
                     dagger      : project(':modules:dagger'),
                     home        : project(':modules:home'),
                     movieDetails: project(':modules:moviedetails'),

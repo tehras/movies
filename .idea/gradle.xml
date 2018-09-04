@@ -11,6 +11,8 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/modules" />
             <option value="$PROJECT_DIR$/modules/arch" />
+            <option value="$PROJECT_DIR$/modules/boxoffice" />
+            <option value="$PROJECT_DIR$/modules/commonviews" />
             <option value="$PROJECT_DIR$/modules/dagger" />
             <option value="$PROJECT_DIR$/modules/discover" />
             <option value="$PROJECT_DIR$/modules/extensions" />

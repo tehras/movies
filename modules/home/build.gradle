@@ -6,4 +6,5 @@ dependencies {
     implementation deps.module.arch
 
     implementation deps.module.discover
+    implementation deps.module.boxoffice
 }

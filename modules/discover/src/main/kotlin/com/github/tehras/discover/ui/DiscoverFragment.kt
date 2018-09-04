@@ -10,11 +10,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.tehras.arch.viewModel
+import com.github.tehras.commonviews.movies.MovieItems
+import com.github.tehras.commonviews.movies.MoviesAdapter
+import com.github.tehras.commonviews.movies.State
+import com.github.tehras.commonviews.movies.State.DONE
 import com.github.tehras.dagger.components.findComponent
 import com.github.tehras.discover.R
-import com.github.tehras.discover.ui.list.DiscoverAdapter
-import com.github.tehras.discover.ui.list.DiscoverItems
-import com.github.tehras.discover.ui.list.State
 import com.github.tehras.movie_details.MovieDetailsActivity
 import ext.android.content.isDarkModeEnabled
 import ext.android.content.setDarkModeEnabled
@@ -45,11 +46,10 @@ class DiscoverFragment : Fragment() {
 
     private val viewModel by viewModel<DiscoverViewModel> { factory }
     private val adapter by lazy {
-        DiscoverAdapter(Consumer { discover ->
+        MoviesAdapter(Consumer { discover ->
             this.activity?.let {
                 MovieDetailsActivity.start(it, discover.id)
             }
-
         })
     }
 
@@ -82,9 +82,9 @@ class DiscoverFragment : Fragment() {
                 .observeState()
                 .observeOn(AndroidSchedulers.mainThread())
                 .map {
-                    DiscoverItems(State.DONE, it.discoverItems)
+                    MovieItems(DONE, it.discoverItems)
                 }
-                .doOnError { DiscoverItems(State.ERROR, mutableListOf()) }
+                .doOnError { MovieItems(State.ERROR, mutableListOf()) }
                 .subscribe(adapter.consume())
     }
 

@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import com.github.tehras.arch.ObservableViewModel
 import com.github.tehras.restapi.tmdb.discover.SortBy
 import com.github.tehras.restapi.tmdb.discover.TmdbService
-import com.github.tehras.restapi.tmdb.models.discover.Discover
+import com.github.tehras.restapi.tmdb.models.common.Movie
 import com.github.tehras.restapi.tmdb.models.genres.Genre
 import com.github.tehras.restapi.tmdb.models.genres.GenresResponse
 import ext.java.util.format
@@ -46,7 +46,7 @@ class DiscoverViewModel @Inject constructor(private val tmdbService: TmdbService
                     it.results.toMutableList()
                 }
                 .doOnError {
-                    mutableListOf<Discover>()
+                    mutableListOf<Movie>()
                 }
                 .toObservable()
 
@@ -80,7 +80,7 @@ class DiscoverViewModel @Inject constructor(private val tmdbService: TmdbService
 }
 
 data class DiscoverState(
-        val discoverItems: MutableList<Discover> /* <Year, List of Discovers> */,
+        val discoverItems: MutableList<Movie> /* <Year, List of Discovers> */,
         val error: Boolean = false
 )
 

@@ -2,6 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/home_discover"
-        android:icon="@drawable/ic_home_discover"
+        android:icon="@drawable/vd_home_discover"
         android:title="@string/home_discover" />
+    <item
+        android:id="@+id/home_box_office"
+        android:icon="@drawable/vd_home_box_office"
+        android:title="@string/in_theaters" />
 </menu>

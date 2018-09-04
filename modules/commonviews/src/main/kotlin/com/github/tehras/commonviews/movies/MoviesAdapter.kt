@@ -1,10 +1,10 @@
-package com.github.tehras.discover.ui.list
+package com.github.tehras.commonviews.movies
 
 import android.annotation.SuppressLint
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.github.tehras.discover.R
-import com.github.tehras.restapi.tmdb.models.discover.Discover
+import com.github.tehras.commonviews.R
+import com.github.tehras.restapi.tmdb.models.common.Movie
 import com.jakewharton.rxrelay2.BehaviorRelay
 import ext.android.view.inflateView
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -15,17 +15,15 @@ import timber.log.Timber
  * @author tkoshkin created on 8/27/18
  */
 @SuppressLint("CheckResult")
-class DiscoverAdapter(private val clickConsumer: Consumer<Discover>) : RecyclerView.Adapter<DiscoverViewHolder>() {
+class MoviesAdapter(private val clickConsumer: Consumer<Movie>) : RecyclerView.Adapter<MoviesViewHolder>() {
 
-    private var discoverItems: DiscoverItems = DiscoverItems()
+    private var discoverItems: MovieItems = MovieItems()
 
-    private val relay = BehaviorRelay.create<DiscoverItems>()
-    fun consume(): Consumer<DiscoverItems> = relay
-
-    init {
+    private val relay = BehaviorRelay.create<MovieItems>()
+    fun consume(): Consumer<MovieItems> = relay.also { relay ->
         relay
                 .observeOn(AndroidSchedulers.mainThread())
-                .startWith(DiscoverItems(State.LOADING, mutableListOf()))
+                .startWith(MovieItems(State.LOADING, mutableListOf()))
                 .subscribe {
                     Timber.d("Results received - ${it.discoverList}")
                     val animate = discoverItems.state == State.LOADING && discoverItems.discoverList.isEmpty()
@@ -39,22 +37,22 @@ class DiscoverAdapter(private val clickConsumer: Consumer<Discover>) : RecyclerV
                 }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DiscoverViewHolder {
-        return DiscoverMovieViewHolder(parent.inflateView(R.layout.discover_view_body), clickConsumer)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
+        return MoviesBodyViewHolder(parent.inflateView(R.layout.discover_view_body), clickConsumer)
     }
 
     override fun getItemCount(): Int {
         return discoverItems.discoverList.size
     }
 
-    override fun onBindViewHolder(holder: DiscoverViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
         when (holder) {
-            is DiscoverMovieViewHolder -> holder.bind(discoverItems.discoverList[position])
+            is MoviesBodyViewHolder -> holder.bind(discoverItems.discoverList[position])
         }
     }
 }
 
-data class DiscoverItems(var state: State = State.LOADING, var discoverList: MutableList<Discover> = mutableListOf())
+data class MovieItems(var state: State = State.LOADING, var discoverList: MutableList<Movie> = mutableListOf())
 
 enum class State {
     ERROR, LOADING, DONE

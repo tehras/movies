@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">BoxOffice</string>
+    <string name="in_theaters">In Theaters</string>
+    <string name="movie_title">Title</string>
+</resources>

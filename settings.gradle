@@ -1,4 +1,6 @@
 include ':app',
+        'modules:commonviews',
+        'modules:boxoffice',
         'modules:ui',
         'modules:discover',
         'modules:moshi',

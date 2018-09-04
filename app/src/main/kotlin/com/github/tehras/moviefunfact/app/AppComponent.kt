@@ -1,6 +1,7 @@
 package com.github.tehras.moviefunfact.app
 
 import android.app.Application
+import com.github.tehras.boxoffice.BoxOfficeComponentCreator
 import com.github.tehras.dagger.components.MainComponent
 import com.github.tehras.dagger.modules.AppModule
 import com.github.tehras.dagger.scopes.ApplicationScope
@@ -30,6 +31,7 @@ interface AppComponent :
         MainComponent,
         HomeComponentCreator,
         MovieDetailsComponentCreator,
+        BoxOfficeComponentCreator,
         DiscoverComponentCreator {
 
     fun plusApplication(application: MovieApplication)
