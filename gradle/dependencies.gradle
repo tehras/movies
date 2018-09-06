@@ -43,6 +43,7 @@ ext {
             retrofitRx        : "com.squareup.retrofit2:adapter-rxjava2:$retrofitVer",
 
             picasso           : "com.squareup.picasso:picasso:2.71828",
+            picassoTransformer: "jp.wasabeef:picasso-transformations:2.2.1",
             adapterAnimator   : "jp.wasabeef:recyclerview-animators:2.3.0",
 
             moshi             : "com.squareup.moshi:moshi:$moshiVer",

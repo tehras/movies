@@ -10,10 +10,8 @@
         android:layout_width="@dimen/profile_width"
         android:layout_height="@dimen/profile_height"
         android:layout_margin="4dp"
-        android:background="@drawable/bg_rounded"
-        android:contentDescription="@string/image_of_the_cast_member"
-        android:elevation="@dimen/elevation_standard"
-        android:padding="2dp" />
+        android:background="?attr/bgPrimary"
+        android:contentDescription="@string/image_of_the_cast_member" />
 
     <TextView
         android:id="@+id/cast_name"
