@@ -8,7 +8,8 @@ import com.github.tehras.dagger.scopes.ApplicationScope
 import com.github.tehras.discover.ui.DiscoverComponentCreator
 import com.github.tehras.home.HomeComponentCreator
 import com.github.tehras.moshi.MoshiModule
-import com.github.tehras.movie_details.MovieDetailsComponentCreator
+import com.github.tehras.moviedetails.MovieDetailsComponentCreator
+import com.github.tehras.person.PersonComponentCreator
 import com.github.tehras.restapi.retrofit.RetrofitModule
 import com.github.tehras.restapi.tmdb.TmdbServiceModule
 import dagger.BindsInstance
@@ -31,6 +32,7 @@ interface AppComponent :
         MainComponent,
         HomeComponentCreator,
         MovieDetailsComponentCreator,
+        PersonComponentCreator,
         BoxOfficeComponentCreator,
         DiscoverComponentCreator {
 

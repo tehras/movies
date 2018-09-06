@@ -1,4 +1,4 @@
-package com.github.tehras.movie_details
+package com.github.tehras.moviedetails
 
 import android.app.Activity
 import android.content.Intent
@@ -8,7 +8,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.tehras.arch.viewModelActivity
 import com.github.tehras.dagger.components.findComponent
-import com.github.tehras.movie_details.castadapter.CastAdapter
+import com.github.tehras.moviedetails.castadapter.Action
+import com.github.tehras.moviedetails.castadapter.CastAdapter
+import com.github.tehras.person.PersonActivity
 import com.github.tehras.restapi.tmdb.IMAGE_URL_LARGE
 import com.github.tehras.restapi.tmdb.models.moviedetails.MovieDetails
 import com.squareup.picasso.Picasso
@@ -18,6 +20,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Consumer
 import io.reactivex.rxkotlin.plusAssign
+import io.reactivex.rxkotlin.subscribeBy
 import jp.wasabeef.recyclerview.animators.SlideInRightAnimator
 import kotlinx.android.synthetic.main.activity_movie_details.*
 import kotlinx.android.synthetic.main.content_movie_description.*
@@ -81,6 +84,14 @@ class MovieDetailsActivity : AppCompatActivity() {
                 }
                 .map { Pair(it.movieDetails!!, it.reviews) }
                 .subscribe(movie_reviews.consume())
+
+        startDisposable += castAdapter.observeActions()
+                .ofType(Action.CastSelected::class.java)
+                .observeOn(AndroidSchedulers.mainThread())
+                .map { it.cast }
+                .subscribeBy {
+                    PersonActivity.start(this, it.id)
+                }
     }
 
     override fun onStop() {

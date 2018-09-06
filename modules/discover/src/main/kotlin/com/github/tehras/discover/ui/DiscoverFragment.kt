@@ -16,7 +16,7 @@ import com.github.tehras.commonviews.movies.State
 import com.github.tehras.commonviews.movies.State.DONE
 import com.github.tehras.dagger.components.findComponent
 import com.github.tehras.discover.R
-import com.github.tehras.movie_details.MovieDetailsActivity
+import com.github.tehras.moviedetails.MovieDetailsActivity
 import ext.android.content.isDarkModeEnabled
 import ext.android.content.setDarkModeEnabled
 import ext.androidx.fragment.app.darkTheme

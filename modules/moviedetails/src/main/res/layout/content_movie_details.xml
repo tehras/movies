@@ -23,7 +23,7 @@
         android:textColor="?attr/typePrimary"
         android:textStyle="bold" />
 
-    <com.github.tehras.movie_details.ReviewsView
+    <com.github.tehras.moviedetails.ReviewsView
         android:id="@+id/movie_reviews"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

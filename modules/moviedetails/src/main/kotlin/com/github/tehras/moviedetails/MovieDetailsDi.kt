@@ -1,7 +1,7 @@
 /*
 
  */
-package com.github.tehras.movie_details
+package com.github.tehras.moviedetails
 
 import androidx.lifecycle.ViewModel
 import com.github.tehras.arch.dagger.ViewModelFactoryModule

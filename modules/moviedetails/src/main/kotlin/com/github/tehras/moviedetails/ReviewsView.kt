@@ -1,4 +1,4 @@
-package com.github.tehras.movie_details
+package com.github.tehras.moviedetails
 
 import android.annotation.SuppressLint
 import android.content.Context

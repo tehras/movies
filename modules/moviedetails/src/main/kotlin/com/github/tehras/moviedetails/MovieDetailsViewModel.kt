@@ -1,7 +1,7 @@
 /*
 
  */
-package com.github.tehras.movie_details
+package com.github.tehras.moviedetails
 
 import com.github.tehras.arch.ObservableViewModel
 import com.github.tehras.restapi.tmdb.models.cast.Cast

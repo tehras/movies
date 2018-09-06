@@ -21,7 +21,8 @@ ext {
                     extensions  : project(':modules:extensions'),
                     moshi       : project(':modules:moshi'),
                     discover    : project(':modules:discover'),
-                    ui          : project(':modules:ui')
+                    ui          : project(':modules:ui'),
+                    person      : project(':modules:person')
             ],
 
             rxJava            : "io.reactivex.rxjava2:rxjava:$rxjavaVer",

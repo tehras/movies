@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.github.tehras.person">
+
+    <application android:theme="@style/Theme.Movies.DayNight.NoActionBar">
+        <activity android:name=".PersonActivity" />
+    </application>
+
+</manifest>

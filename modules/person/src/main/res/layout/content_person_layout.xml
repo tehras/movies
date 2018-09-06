@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/default_padding"
+    tools:showIn="@layout/activity_person_layout">
+
+    <ImageView
+        android:id="@+id/person_image"
+        android:layout_width="@dimen/profile_width"
+        android:layout_height="@dimen/profile_height"
+        android:contentDescription="@string/cast_image"
+        android:elevation="@dimen/elevation_standard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/person_name"
+        style="@style/TextAppearance.AppCompat.Large"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/horizontal_margin"
+        android:textColor="?attr/typePrimary"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/person_age"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/person_image"
+        app:layout_constraintTop_toTopOf="@+id/person_image"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Taras Koshkin" />
+
+    <TextView
+        android:id="@+id/person_age"
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/typeSecondary"
+        app:layout_constraintBottom_toTopOf="@+id/person_death"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/person_name"
+        app:layout_constraintTop_toBottomOf="@id/person_name"
+        tools:text="Age: 64 (Apr 17th, 2018)" />
+
+    <TextView
+        android:id="@+id/person_death"
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/typeSecondary"
+        app:layout_constraintBottom_toTopOf="@+id/person_place_of_birth"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/person_name"
+        app:layout_constraintTop_toBottomOf="@id/person_age"
+        tools:text="Died: Apr 17th 2018" />
+
+    <TextView
+        android:id="@+id/person_place_of_birth"
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/typeSecondary"
+        app:layout_constraintBottom_toBottomOf="@+id/person_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/person_death"
+        app:layout_constraintTop_toBottomOf="@id/person_death"
+        tools:text="Ivano-Frankivsk, Ukraine" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/top_section_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="person_place_of_birth,person_image" />
+
+    <com.github.tehras.views.ExpandableTextLayout
+        android:id="@+id/person_bio"
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vertical_margin"
+        android:layout_marginBottom="@dimen/vertical_margin"
+        android:background="@drawable/bg_rounded"
+        android:elevation="@dimen/elevation_small"
+        android:textColor="?attr/typeSecondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top_section_barrier" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/person_movies"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/vertical_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/person_bio" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

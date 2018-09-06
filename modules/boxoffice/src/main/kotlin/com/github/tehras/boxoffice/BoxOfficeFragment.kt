@@ -14,7 +14,7 @@ import com.github.tehras.commonviews.movies.MovieItems
 import com.github.tehras.commonviews.movies.MoviesAdapter
 import com.github.tehras.commonviews.movies.State
 import com.github.tehras.dagger.components.findComponent
-import com.github.tehras.movie_details.MovieDetailsActivity
+import com.github.tehras.moviedetails.MovieDetailsActivity
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Consumer
 import io.reactivex.rxkotlin.plusAssign
