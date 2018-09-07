@@ -125,6 +125,7 @@ class MovieDetailsActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@MovieDetailsActivity, LinearLayoutManager.HORIZONTAL, false)
             itemAnimator = SlideInRightAnimator()
             adapter = castAdapter
+            isNestedScrollingEnabled = false
         }
     }
 

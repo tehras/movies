@@ -6,8 +6,10 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.tehras.arch.viewModelActivity
 import com.github.tehras.dagger.components.findComponent
+import com.github.tehras.person.images.ImagesAdapter
 import com.github.tehras.restapi.tmdb.IMAGE_URL_PROFILE
 import com.github.tehras.restapi.tmdb.models.cast.Person
 import com.squareup.picasso.Picasso
@@ -18,6 +20,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
+import jp.wasabeef.recyclerview.animators.SlideInRightAnimator
 import kotlinx.android.synthetic.main.activity_person_layout.*
 import kotlinx.android.synthetic.main.content_person_layout.*
 import javax.inject.Inject
@@ -27,6 +30,8 @@ class PersonActivity : AppCompatActivity() {
     lateinit var factory: ViewModelProvider.Factory
     private val viewModel by viewModelActivity<PersonViewModel> { factory }
     private val startDisposable = CompositeDisposable()
+
+    private val imagesAdapter by lazy { ImagesAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         findComponent<PersonComponentCreator>()
@@ -40,13 +45,15 @@ class PersonActivity : AppCompatActivity() {
         setContentView(R.layout.activity_person_layout)
 
         initToolbar()
+        initImagesView()
     }
 
     override fun onStart() {
         super.onStart()
 
-        startDisposable += viewModel.observeState()
-                .filter { it.state == PersonState.State.SUCCESS }
+        startDisposable += viewModel
+                .observeState()
+                .filter { it.state == PersonState.State.SUCCESS && it.person != null }
                 .map { it.person }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { person ->
@@ -54,6 +61,12 @@ class PersonActivity : AppCompatActivity() {
                         populatePersonInfo(it)
                     }
                 }
+
+        startDisposable += viewModel
+                .observeState()
+                .filter { it.state == PersonState.State.SUCCESS && it.images.profiles.isNotEmpty() }
+                .map { it.images.profiles.toMutableList() }
+                .subscribe(imagesAdapter.consume())
     }
 
     override fun onStop() {
@@ -64,6 +77,16 @@ class PersonActivity : AppCompatActivity() {
 
     private fun initToolbar() {
         person_toolbar.setOnClickListener { finish() }
+    }
+
+    private fun initImagesView() {
+        person_images.run {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(this@PersonActivity, LinearLayoutManager.HORIZONTAL, false)
+            isNestedScrollingEnabled = false
+            itemAnimator = SlideInRightAnimator()
+            adapter = imagesAdapter
+        }
     }
 
     @SuppressLint("SetTextI18n")
