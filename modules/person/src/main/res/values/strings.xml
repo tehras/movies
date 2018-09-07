@@ -2,4 +2,5 @@
 <resources>
     <string name="person_image">Person image</string>
     <string name="cast_image">Cast Image</string>
+    <string name="movie_image">Movie Image</string>
 </resources>

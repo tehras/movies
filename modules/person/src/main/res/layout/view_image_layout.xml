@@ -7,8 +7,7 @@
         android:id="@+id/image_person"
         android:layout_width="@dimen/profile_width"
         android:layout_height="@dimen/profile_height"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="4dp"
+        android:layout_marginEnd="8dp"
         android:contentDescription="@string/person_image"
         android:orientation="vertical" />
 </FrameLayout>

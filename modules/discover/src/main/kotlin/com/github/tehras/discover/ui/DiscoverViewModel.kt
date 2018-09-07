@@ -57,9 +57,7 @@ class DiscoverViewModel @Inject constructor(private val tmdbService: TmdbService
                     }
                     DiscoverState(pair.first, false)
                 }
-                .doOnError {
-                    DiscoverState(mutableListOf(), true)
-                }
+                .onErrorReturn { DiscoverState(mutableListOf(), true) }
                 .subscribeUntilDestroyed()
     }
 

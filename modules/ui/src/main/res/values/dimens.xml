@@ -16,4 +16,6 @@
 
     <dimen name="profile_width">150dp</dimen>
     <dimen name="profile_height">225dp</dimen>
+
+    <dimen name="rating_circle_size">48dp</dimen>
 </resources>

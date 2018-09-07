@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.tehras.arch.viewModelActivity
 import com.github.tehras.dagger.components.findComponent
 import com.github.tehras.person.images.ImagesAdapter
+import com.github.tehras.person.moviecredits.MovieCreditsAdapter
 import com.github.tehras.restapi.tmdb.IMAGE_URL_PROFILE
 import com.github.tehras.restapi.tmdb.models.cast.Person
 import com.squareup.picasso.Picasso
@@ -21,6 +22,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 import jp.wasabeef.recyclerview.animators.SlideInRightAnimator
+import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 import kotlinx.android.synthetic.main.activity_person_layout.*
 import kotlinx.android.synthetic.main.content_person_layout.*
 import javax.inject.Inject
@@ -32,6 +34,7 @@ class PersonActivity : AppCompatActivity() {
     private val startDisposable = CompositeDisposable()
 
     private val imagesAdapter by lazy { ImagesAdapter() }
+    private val movieCreditsAdapter by lazy { MovieCreditsAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         findComponent<PersonComponentCreator>()
@@ -46,6 +49,7 @@ class PersonActivity : AppCompatActivity() {
 
         initToolbar()
         initImagesView()
+        initMovieCredits()
     }
 
     override fun onStart() {
@@ -67,6 +71,12 @@ class PersonActivity : AppCompatActivity() {
                 .filter { it.state == PersonState.State.SUCCESS && it.images.profiles.isNotEmpty() }
                 .map { it.images.profiles.toMutableList() }
                 .subscribe(imagesAdapter.consume())
+
+        startDisposable += viewModel
+                .observeState()
+                .filter { it.state == PersonState.State.SUCCESS && it.movieCredits.isNotEmpty() }
+                .map { it.movieCredits }
+                .subscribe(movieCreditsAdapter.consume())
     }
 
     override fun onStop() {
@@ -86,6 +96,16 @@ class PersonActivity : AppCompatActivity() {
             isNestedScrollingEnabled = false
             itemAnimator = SlideInRightAnimator()
             adapter = imagesAdapter
+        }
+    }
+
+    private fun initMovieCredits() {
+        person_movie_credits.run {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(this@PersonActivity)
+            isNestedScrollingEnabled = false
+            itemAnimator = SlideInUpAnimator()
+            adapter = movieCreditsAdapter
         }
     }
 

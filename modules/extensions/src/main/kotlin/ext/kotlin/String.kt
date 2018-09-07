@@ -6,9 +6,17 @@ import java.util.*
 fun String.toDate(): String {
     return try {
         val d = SimpleDateFormat("yyyy-MM-dd", Locale.US).parse(this)
-        SimpleDateFormat("MMM dd, 'yy", Locale.US).format(d)
+        SimpleDateFormat("MMM d, yyyy", Locale.US).format(d)
     } catch (ignored: Exception) {
         ""
+    }
+}
+
+fun String.toDateObject(): Date? {
+    return try {
+        SimpleDateFormat("yyyy-MM-dd", Locale.US).parse(this)
+    } catch (ignored: Exception) {
+        null
     }
 }
 
@@ -34,7 +42,7 @@ fun String.toAge(): String {
             }
         }
 
-        "$age (${SimpleDateFormat("MMM dd, yyyy", Locale.US).format(d)})"
+        "$age (${SimpleDateFormat("MMM d, yyyy", Locale.US).format(d)})"
     } catch (ignored: Exception) {
         ""
     }
