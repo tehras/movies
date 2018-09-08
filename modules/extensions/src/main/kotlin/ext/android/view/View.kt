@@ -22,3 +22,7 @@ fun View.invisible() {
         this.visibility = View.INVISIBLE
     }
 }
+
+fun View.isVisible(): Boolean = this.visibility == View.VISIBLE
+fun View.isGone(): Boolean = this.visibility == View.GONE
+fun View.isInvisible(): Boolean = this.visibility == View.INVISIBLE

@@ -5,21 +5,29 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.github.tehras.animations.fadeIn
+import com.github.tehras.animations.fadeOut
 import com.github.tehras.arch.viewModelActivity
 import com.github.tehras.dagger.components.findComponent
 import com.github.tehras.person.images.ImagesAdapter
 import com.github.tehras.person.moviecredits.MovieCreditsAdapter
 import com.github.tehras.restapi.tmdb.IMAGE_URL_PROFILE
+import com.github.tehras.restapi.tmdb.IMAGE_URL_SMALL
 import com.github.tehras.restapi.tmdb.models.cast.Person
 import com.squareup.picasso.Picasso
 import ext.android.view.gone
+import ext.android.view.invisible
+import ext.android.view.isVisible
+import ext.android.view.visible
 import ext.kotlin.toAge
 import ext.kotlin.toDate
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
+import jp.wasabeef.picasso.transformations.CropCircleTransformation
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 import jp.wasabeef.recyclerview.animators.SlideInRightAnimator
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
@@ -118,6 +126,12 @@ class PersonActivity : AppCompatActivity() {
                 .placeholder(R.drawable.placeholder_cast)
                 .into(person_image)
 
+        Picasso.get()
+                .load("$IMAGE_URL_SMALL${person.profilePath}")
+                .transform(CropCircleTransformation())
+                .into(person_toolbar_image)
+
+        person_toolbar_title.text = person.name
         person_name.text = person.name
         person_bio.setText(person.biography)
         person_age.text = calculateAge(person.birthday)
@@ -130,6 +144,20 @@ class PersonActivity : AppCompatActivity() {
             person_death.text = "Died on ${it.toDate()}"
         } ?: kotlin.run {
             person_death.gone()
+        }
+
+        person_toolbar_title.invisible()
+        person_toolbar_image.invisible()
+
+        val imageHeight = resources.getDimensionPixelSize(R.dimen.movie_image_height)
+        person_scroll_view.setOnScrollChangeListener { _: NestedScrollView?, _: Int, scrollY: Int, _: Int, _: Int ->
+            if (scrollY > imageHeight) {
+                person_toolbar_title.fadeIn({ !isVisible() }) { visible() }
+                person_toolbar_image.fadeIn({ !isVisible() }) { visible() }
+            } else {
+                person_toolbar_title.fadeOut({ isVisible() }) { invisible() }
+                person_toolbar_image.fadeOut({ isVisible() }) { invisible() }
+            }
         }
     }
 

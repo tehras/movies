@@ -23,21 +23,25 @@ class MovieCreditsViewHolder(override val containerView: View) : RecyclerView.Vi
         movie_title.text = cast.title ?: ""
         movie_overview.text = cast.overview
 
-        val releaseDate = cast.releaseDate.toDate()
+        val releaseDate = cast.releaseDate?.toDate() ?: ""
         if (releaseDate.isNotEmpty()) {
-            movie_release.text = "Release - ${cast.releaseDate.toDate()}"
+            movie_release.text = "Release - $releaseDate"
         } else {
             movie_release.text = ""
         }
 
-        cast.voteAverage?.let {
+        if (cast.voteAverage ?: 0.0 > 0.0) {
             movie_rating.visible()
-            movie_rating.setProgress(it.times(10))
-        } ?: kotlin.run { movie_rating.gone() }
-        cast.voteCount?.let {
+            movie_rating.setProgress(cast.voteAverage!!.times(10))
+        } else {
+            movie_rating.gone()
+        }
+        if (cast.voteCount ?: 0 > 0) {
             movie_rating_count.visible()
-            movie_rating_count.text = "$it votes"
-        } ?: kotlin.run { movie_rating_count.gone() }
+            movie_rating_count.text = "${cast.voteCount} votes"
+        } else {
+            movie_rating_count.gone()
+        }
 
         Picasso.get()
                 .load("$IMAGE_URL_SMALL${cast.posterPath}")

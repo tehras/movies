@@ -3,10 +3,13 @@ package ext.kotlin
 import java.text.SimpleDateFormat
 import java.util.*
 
+val serviceDateFormat by lazy { SimpleDateFormat("yyyy-MM-dd", Locale.US) }
+val uiDateFormat by lazy { SimpleDateFormat("MMM d, yyyy", Locale.US) }
+
 fun String.toDate(): String {
     return try {
-        val d = SimpleDateFormat("yyyy-MM-dd", Locale.US).parse(this)
-        SimpleDateFormat("MMM d, yyyy", Locale.US).format(d)
+        val d = serviceDateFormat.parse(this)
+        uiDateFormat.format(d)
     } catch (ignored: Exception) {
         ""
     }
@@ -14,7 +17,7 @@ fun String.toDate(): String {
 
 fun String.toDateObject(): Date? {
     return try {
-        SimpleDateFormat("yyyy-MM-dd", Locale.US).parse(this)
+        serviceDateFormat.parse(this)
     } catch (ignored: Exception) {
         null
     }
@@ -22,7 +25,7 @@ fun String.toDateObject(): Date? {
 
 fun String.toAge(): String {
     return try {
-        val d = SimpleDateFormat("yyyy-MM-dd", Locale.US).parse(this)
+        val d = serviceDateFormat.parse(this)
         val now = Calendar.getInstance()
         val dob = Calendar.getInstance().apply {
             time = d
@@ -42,7 +45,7 @@ fun String.toAge(): String {
             }
         }
 
-        "$age (${SimpleDateFormat("MMM d, yyyy", Locale.US).format(d)})"
+        "$age (${uiDateFormat.format(d)})"
     } catch (ignored: Exception) {
         ""
     }

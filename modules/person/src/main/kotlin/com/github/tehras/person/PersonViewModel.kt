@@ -7,6 +7,7 @@ import com.github.tehras.restapi.tmdb.models.cast.PersonCast
 import com.github.tehras.restapi.tmdb.person.PersonService
 import io.reactivex.rxkotlin.Observables
 import io.reactivex.schedulers.Schedulers
+import timber.log.Timber
 import javax.inject.Inject
 
 class PersonViewModel @Inject constructor(private val personId: Long, private val personService: PersonService) : ObservableViewModel<PersonState, PersonUiEvent>() {
@@ -26,14 +27,17 @@ class PersonViewModel @Inject constructor(private val personId: Long, private va
         val movieCreditsObservable = personService
                 .movieCredits(personId)
                 .toObservable()
-                .subscribeOn(Schedulers.io())
                 .map { personCred ->
+                    Timber.d("person credits :: $personCred")
                     personCred.cast
                             .filter { it.character.isNotEmpty() }
                             .sortedByDescending { it.releaseDateConverted }
                             .toMutableList()
                 }
                 .subscribeOn(Schedulers.io())
+                .doOnError {
+                    Timber.w("Error getting movie credits $it")
+                }
                 .startWith(mutableListOf<PersonCast>())
 
         Observables

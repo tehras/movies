@@ -16,7 +16,7 @@ data class PersonCast(
         @Json(name = "credit_id")
         val creditId: String,
         @Json(name = "release_date")
-        val releaseDate: String,
+        val releaseDate: String?,
         val character: String,
         val title: String?,
         val overview: String,
@@ -31,5 +31,5 @@ data class PersonCast(
         @Json(name = "poster_path")
         val posterPath: String?
 ) {
-    val releaseDateConverted by lazy { releaseDate.toDateObject() }
+    val releaseDateConverted by lazy { releaseDate?.toDateObject() }
 }
