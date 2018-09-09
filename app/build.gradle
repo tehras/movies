@@ -32,6 +32,7 @@ dependencies {
     implementation deps.module.boxoffice
     implementation deps.module.movieDetails
     implementation deps.module.person
+    implementation deps.module.restApi
 
     implementation deps.appCenterAnalytics
     implementation deps.appCenterCrashes

@@ -6,8 +6,8 @@ import android.text.Html
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
-import com.github.tehras.restapi.tmdb.models.moviedetails.MovieDetails
-import com.github.tehras.restapi.tmdb.models.reviews.Review
+import com.github.tehras.models.tmdb.models.moviedetails.MovieDetails
+import com.github.tehras.models.tmdb.models.reviews.Review
 import com.jakewharton.rxrelay2.PublishRelay
 import ext.android.view.gone
 import ext.android.view.visible

@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.github.tehras.moviedetails.R
-import com.github.tehras.restapi.tmdb.models.cast.Cast
+import com.github.tehras.models.tmdb.models.cast.Cast
 import com.jakewharton.rxrelay2.PublishRelay
 import ext.android.view.inflateView
 import io.reactivex.Observable

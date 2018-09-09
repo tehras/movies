@@ -2,9 +2,9 @@ package com.github.tehras.moviedetails.castadapter
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.github.tehras.models.tmdb.models.cast.Cast
 import com.github.tehras.moviedetails.R
-import com.github.tehras.restapi.tmdb.IMAGE_URL_PROFILE
-import com.github.tehras.restapi.tmdb.models.cast.Cast
+import com.github.tehras.restapi.IMAGE_URL_PROFILE
 import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 import kotlinx.android.extensions.LayoutContainer

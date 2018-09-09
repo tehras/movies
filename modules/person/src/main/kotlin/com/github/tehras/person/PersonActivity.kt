@@ -12,11 +12,11 @@ import com.github.tehras.animations.fadeIn
 import com.github.tehras.animations.fadeOut
 import com.github.tehras.arch.viewModelActivity
 import com.github.tehras.dagger.components.findComponent
+import com.github.tehras.models.tmdb.models.cast.Person
 import com.github.tehras.person.images.ImagesAdapter
 import com.github.tehras.person.moviecredits.MovieCreditsAdapter
-import com.github.tehras.restapi.tmdb.IMAGE_URL_PROFILE
-import com.github.tehras.restapi.tmdb.IMAGE_URL_SMALL
-import com.github.tehras.restapi.tmdb.models.cast.Person
+import com.github.tehras.restapi.IMAGE_URL_PROFILE
+import com.github.tehras.restapi.IMAGE_URL_SMALL
 import com.squareup.picasso.Picasso
 import ext.android.view.gone
 import ext.android.view.invisible

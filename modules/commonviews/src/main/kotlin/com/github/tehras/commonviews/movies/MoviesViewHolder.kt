@@ -3,8 +3,8 @@ package com.github.tehras.commonviews.movies
 import android.annotation.SuppressLint
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.github.tehras.restapi.tmdb.IMAGE_URL_SMALL
-import com.github.tehras.restapi.tmdb.models.common.Movie
+import com.github.tehras.models.tmdb.models.common.Movie
+import com.github.tehras.restapi.IMAGE_URL_SMALL
 import com.github.tehras.views.GenreOutline
 import com.jakewharton.rxbinding2.view.clicks
 import com.squareup.picasso.Picasso

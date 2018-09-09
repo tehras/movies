@@ -4,9 +4,9 @@ import android.annotation.SuppressLint
 import android.text.Html
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.github.tehras.models.tmdb.models.cast.PersonCast
 import com.github.tehras.person.R
-import com.github.tehras.restapi.tmdb.IMAGE_URL_SMALL
-import com.github.tehras.restapi.tmdb.models.cast.PersonCast
+import com.github.tehras.restapi.IMAGE_URL_SMALL
 import com.squareup.picasso.Picasso
 import ext.android.view.gone
 import ext.android.view.visible

@@ -18,6 +18,7 @@
             <option value="$PROJECT_DIR$/modules/extensions" />
             <option value="$PROJECT_DIR$/modules/home" />
             <option value="$PROJECT_DIR$/modules/logger" />
+            <option value="$PROJECT_DIR$/modules/models" />
             <option value="$PROJECT_DIR$/modules/moshi" />
             <option value="$PROJECT_DIR$/modules/moviedetails" />
             <option value="$PROJECT_DIR$/modules/person" />

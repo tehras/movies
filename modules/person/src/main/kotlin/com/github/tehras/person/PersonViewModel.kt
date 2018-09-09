@@ -1,10 +1,10 @@
 package com.github.tehras.person
 
 import com.github.tehras.arch.ObservableViewModel
-import com.github.tehras.restapi.tmdb.models.cast.Images
-import com.github.tehras.restapi.tmdb.models.cast.Person
-import com.github.tehras.restapi.tmdb.models.cast.PersonCast
-import com.github.tehras.restapi.tmdb.person.PersonService
+import com.github.tehras.models.tmdb.models.cast.Images
+import com.github.tehras.models.tmdb.models.cast.Person
+import com.github.tehras.models.tmdb.models.cast.PersonCast
+import com.github.tehras.restapi.person.PersonService
 import io.reactivex.rxkotlin.Observables
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber

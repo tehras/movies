@@ -4,10 +4,10 @@
 package com.github.tehras.moviedetails
 
 import com.github.tehras.arch.ObservableViewModel
-import com.github.tehras.restapi.tmdb.models.cast.Cast
-import com.github.tehras.restapi.tmdb.models.moviedetails.MovieDetails
-import com.github.tehras.restapi.tmdb.models.reviews.Review
-import com.github.tehras.restapi.tmdb.movies.MoviesService
+import com.github.tehras.models.tmdb.models.cast.Cast
+import com.github.tehras.models.tmdb.models.moviedetails.MovieDetails
+import com.github.tehras.models.tmdb.models.reviews.Review
+import com.github.tehras.restapi.movies.MoviesService
 import io.reactivex.rxkotlin.Observables
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject

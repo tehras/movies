@@ -8,7 +8,7 @@ dependencies {
     api deps.retrofitMoshi
     api deps.retrofitRx
 
-    implementation deps.module.extensions
+    api deps.module.models
 
     api deps.moshi
     api deps.moshiKotlin

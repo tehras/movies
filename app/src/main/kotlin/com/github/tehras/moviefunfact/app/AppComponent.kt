@@ -10,8 +10,8 @@ import com.github.tehras.home.HomeComponentCreator
 import com.github.tehras.moshi.MoshiModule
 import com.github.tehras.moviedetails.MovieDetailsComponentCreator
 import com.github.tehras.person.PersonComponentCreator
+import com.github.tehras.restapi.TmdbServiceModule
 import com.github.tehras.restapi.retrofit.RetrofitModule
-import com.github.tehras.restapi.tmdb.TmdbServiceModule
 import dagger.BindsInstance
 import dagger.Component
 

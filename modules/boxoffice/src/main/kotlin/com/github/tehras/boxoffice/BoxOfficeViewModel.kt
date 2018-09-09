@@ -1,8 +1,8 @@
 package com.github.tehras.boxoffice
 
 import com.github.tehras.arch.ObservableViewModel
-import com.github.tehras.restapi.tmdb.boxoffice.BoxOfficeService
-import com.github.tehras.restapi.tmdb.models.common.Movie
+import com.github.tehras.models.tmdb.models.common.Movie
+import com.github.tehras.restapi.boxoffice.BoxOfficeService
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 

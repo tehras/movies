@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.github.tehras.commonviews.R
-import com.github.tehras.restapi.tmdb.models.common.Movie
+import com.github.tehras.models.tmdb.models.common.Movie
 import com.jakewharton.rxrelay2.BehaviorRelay
 import ext.android.view.inflateView
 import io.reactivex.android.schedulers.AndroidSchedulers

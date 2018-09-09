@@ -2,11 +2,11 @@ package com.github.tehras.discover.ui
 
 import android.annotation.SuppressLint
 import com.github.tehras.arch.ObservableViewModel
-import com.github.tehras.restapi.tmdb.discover.SortBy
-import com.github.tehras.restapi.tmdb.discover.TmdbService
-import com.github.tehras.restapi.tmdb.models.common.Movie
-import com.github.tehras.restapi.tmdb.models.genres.Genre
-import com.github.tehras.restapi.tmdb.models.genres.GenresResponse
+import com.github.tehras.models.tmdb.models.common.Movie
+import com.github.tehras.models.tmdb.models.genres.Genre
+import com.github.tehras.models.tmdb.models.genres.GenresResponse
+import com.github.tehras.restapi.discover.SortBy
+import com.github.tehras.restapi.discover.TmdbService
 import ext.java.util.format
 import ext.java.util.monthsAgo
 import io.reactivex.rxkotlin.Observables

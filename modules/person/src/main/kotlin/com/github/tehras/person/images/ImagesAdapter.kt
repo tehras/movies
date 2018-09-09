@@ -3,7 +3,7 @@ package com.github.tehras.person.images
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.github.tehras.person.R
-import com.github.tehras.restapi.tmdb.models.cast.Image
+import com.github.tehras.models.tmdb.models.cast.Image
 import com.jakewharton.rxrelay2.PublishRelay
 import ext.android.view.inflateView
 import io.reactivex.android.schedulers.AndroidSchedulers

@@ -8,11 +8,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.tehras.arch.viewModelActivity
 import com.github.tehras.dagger.components.findComponent
+import com.github.tehras.models.tmdb.models.moviedetails.MovieDetails
 import com.github.tehras.moviedetails.castadapter.Action
 import com.github.tehras.moviedetails.castadapter.CastAdapter
 import com.github.tehras.person.PersonActivity
-import com.github.tehras.restapi.tmdb.IMAGE_URL_LARGE
-import com.github.tehras.restapi.tmdb.models.moviedetails.MovieDetails
+import com.github.tehras.restapi.IMAGE_URL_LARGE
 import com.squareup.picasso.Picasso
 import ext.android.view.gone
 import ext.android.view.visible
