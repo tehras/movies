@@ -3,5 +3,7 @@ apply from: "$rootDir/gradle/common-android.gradle"
 
 dependencies {
     api deps.appCompat
+    api deps.design
+
     implementation deps.module.extensions
 }

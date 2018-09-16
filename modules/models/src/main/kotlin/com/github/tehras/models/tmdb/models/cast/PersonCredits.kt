@@ -2,6 +2,7 @@ package com.github.tehras.models.tmdb.models.cast
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import ext.kotlin.toDateLong
 import ext.kotlin.toDateObject
 
 @JsonClass(generateAdapter = true)
@@ -32,4 +33,5 @@ data class PersonCast(
         val posterPath: String?
 ) {
     val releaseDateConverted by lazy { releaseDate?.toDateObject() }
+    val releaseDateLong by lazy { releaseDate?.toDateLong() }
 }

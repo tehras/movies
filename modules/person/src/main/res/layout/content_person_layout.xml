@@ -97,6 +97,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/person_bio" />
 
+    <com.github.tehras.views.ChipSelector
+        android:id="@+id/person_movie_credits_categories"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vertical_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/person_images" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/person_movie_credits"
         android:layout_width="0dp"
@@ -105,6 +114,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/person_images" />
+        app:layout_constraintTop_toBottomOf="@+id/person_movie_credits_categories" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

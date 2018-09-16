@@ -123,7 +123,6 @@ abstract class ObservableViewModel<State, UiEvent> : ViewModel() {
 
         return stateRelay
                 .takeUntilDestroyed()
-                .distinctUntilChanged()
     }
 
     /**

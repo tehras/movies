@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/chip_selector_item"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:background="?attr/selectableItemBackground"
+    android:elevation="@dimen/elevation_standard">
+
+    <TextView
+        android:id="@+id/chip_item_text"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_marginStart="4dp"
+        android:gravity="center_vertical"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:textColor="?attr/typePrimary"
+        tools:background="@drawable/bg_circle_selected"
+        tools:text="Sample" />
+
+</FrameLayout>

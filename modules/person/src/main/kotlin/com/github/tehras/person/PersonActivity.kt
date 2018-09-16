@@ -17,6 +17,7 @@ import com.github.tehras.person.images.ImagesAdapter
 import com.github.tehras.person.moviecredits.MovieCreditsAdapter
 import com.github.tehras.restapi.IMAGE_URL_PROFILE
 import com.github.tehras.restapi.IMAGE_URL_SMALL
+import com.github.tehras.views.ChipSelector
 import com.squareup.picasso.Picasso
 import ext.android.view.gone
 import ext.android.view.invisible
@@ -33,6 +34,7 @@ import jp.wasabeef.recyclerview.animators.SlideInRightAnimator
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 import kotlinx.android.synthetic.main.activity_person_layout.*
 import kotlinx.android.synthetic.main.content_person_layout.*
+import timber.log.Timber
 import javax.inject.Inject
 
 class PersonActivity : AppCompatActivity() {
@@ -82,15 +84,37 @@ class PersonActivity : AppCompatActivity() {
 
         startDisposable += viewModel
                 .observeState()
-                .filter { it.state == PersonState.State.SUCCESS && it.movieCredits.isNotEmpty() }
-                .map { it.movieCredits }
+                .filter { it.state == PersonState.State.SUCCESS && it.credits.isNotEmpty() }
+                .map { it.credits.selectedCredits }
                 .subscribe(movieCreditsAdapter.consume())
+
+        startDisposable += viewModel
+                .observeState()
+                .filter { it.state == PersonState.State.SUCCESS && it.credits.tags.isNotEmpty() }
+                .map { it.credits }
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    updateTags(it.tags)
+                }
     }
 
     override fun onStop() {
         startDisposable.clear()
 
         super.onStop()
+    }
+
+    private fun updateTags(tags: MutableList<Credits.Tags>) {
+        person_movie_credits_categories.setChips(
+                tags.map {
+                    ChipSelector.ChipItem(it.displayName, it.selected) {
+                        Timber.d("Tag toggled $it")
+                        viewModel
+                                .consume()
+                                .accept(PersonUiEvent.TagUpdate(it, !it.selected))
+                    }
+                }
+        )
     }
 
     private fun initToolbar() {
@@ -145,9 +169,6 @@ class PersonActivity : AppCompatActivity() {
         } ?: kotlin.run {
             person_death.gone()
         }
-
-        person_toolbar_title.invisible()
-        person_toolbar_image.invisible()
 
         val imageHeight = resources.getDimensionPixelSize(R.dimen.movie_image_height)
         person_scroll_view.setOnScrollChangeListener { _: NestedScrollView?, _: Int, scrollY: Int, _: Int, _: Int ->

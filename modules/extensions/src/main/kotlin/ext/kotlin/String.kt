@@ -23,6 +23,14 @@ fun String.toDateObject(): Date? {
     }
 }
 
+fun String.toDateLong(): Long? {
+    return try {
+        serviceDateFormat.parse(this).time
+    } catch (ignored: Exception) {
+        null
+    }
+}
+
 fun String.toAge(): String {
     return try {
         val d = serviceDateFormat.parse(this)
