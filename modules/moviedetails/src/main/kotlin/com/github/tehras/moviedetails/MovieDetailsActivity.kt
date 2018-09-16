@@ -73,6 +73,7 @@ class MovieDetailsActivity : AppCompatActivity() {
         startDisposable += viewModel
                 .observeState()
                 .filter { it.movieDetails != null }
+                .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext {
                     if (it.movieDetails?.voteCount ?: 0.0 == 0.0) {
                         movie_reviews.gone()
