@@ -5,7 +5,6 @@ apply from: "$rootDir/gradle/common-ui.gradle"
 dependencies {
     implementation deps.module.arch
     implementation deps.module.extensions
-    implementation deps.module.person
 
     implementation deps.picasso
     implementation deps.picassoTransformer

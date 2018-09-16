@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/movie_clickable_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    android:background="@drawable/bg_rounded"
+    android:elevation="@dimen/elevation_standard"
+    android:orientation="vertical"
+    android:padding="@dimen/default_padding">
+
+    <TextView
+        android:id="@+id/movie_title"
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/typePrimary"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="This is us" />
+
+    <ImageView
+        android:id="@+id/movie_image"
+        android:layout_width="@dimen/movie_image_width"
+        android:layout_height="@dimen/movie_image_height"
+        android:layout_marginTop="@dimen/vertical_margin"
+        android:layout_marginBottom="@dimen/vertical_margin"
+        android:contentDescription="@string/movie_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/movie_title"
+        app:layout_constraintTop_toBottomOf="@+id/movie_title" />
+
+    <TextView
+        android:id="@+id/movie_character"
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/horizontal_margin"
+        android:layout_marginTop="@dimen/vertical_margin"
+        android:layout_marginEnd="@dimen/horizontal_margin"
+        android:textColor="?attr/typePrimary"
+        app:layout_constraintEnd_toStartOf="@+id/movie_rating"
+        app:layout_constraintStart_toEndOf="@+id/movie_image"
+        app:layout_constraintTop_toBottomOf="@+id/movie_title"
+        tools:text="Taras Koshkin" />
+
+    <TextView
+        android:id="@+id/movie_overview"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/horizontal_margin"
+        android:layout_marginTop="@dimen/vertical_margin"
+        android:layout_marginBottom="@dimen/vertical_margin"
+        android:ellipsize="end"
+        android:maxLines="4"
+        android:textColor="?attr/typeSecondary"
+        app:layout_constraintBottom_toBottomOf="@+id/movie_image"
+        app:layout_constraintEnd_toEndOf="@id/movie_character"
+        app:layout_constraintStart_toEndOf="@+id/movie_image"
+        app:layout_constraintTop_toBottomOf="@+id/movie_character"
+        app:layout_constraintVertical_bias="0" />
+
+    <com.github.tehras.views.RatingCircle
+        android:id="@+id/movie_rating"
+        android:layout_width="@dimen/rating_circle_size"
+        android:layout_height="@dimen/rating_circle_size"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/movie_rating_count"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/movie_rating_count"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:textColor="?attr/typeSecondary"
+        app:layout_constraintBottom_toBottomOf="@+id/movie_release"
+        app:layout_constraintEnd_toEndOf="@id/movie_rating"
+        app:layout_constraintStart_toStartOf="@id/movie_rating"
+        app:layout_constraintTop_toBottomOf="@+id/movie_rating" />
+
+    <TextView
+        android:id="@+id/movie_release"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/typePrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Mar 20th, 1991" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

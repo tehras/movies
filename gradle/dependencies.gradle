@@ -15,15 +15,14 @@ ext {
                     commonViews : project(':modules:commonviews'),
                     dagger      : project(':modules:dagger'),
                     home        : project(':modules:home'),
-                    models        : project(':modules:models'),
+                    models      : project(':modules:models'),
                     movieDetails: project(':modules:moviedetails'),
                     logger      : project(':modules:logger'),
                     restApi     : project(':modules:restapi'),
                     extensions  : project(':modules:extensions'),
                     moshi       : project(':modules:moshi'),
                     discover    : project(':modules:discover'),
-                    ui          : project(':modules:ui'),
-                    person      : project(':modules:person')
+                    ui          : project(':modules:ui')
             ],
 
             rxJava            : "io.reactivex.rxjava2:rxjava:$rxjavaVer",

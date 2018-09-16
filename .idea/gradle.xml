@@ -21,7 +21,6 @@
             <option value="$PROJECT_DIR$/modules/models" />
             <option value="$PROJECT_DIR$/modules/moshi" />
             <option value="$PROJECT_DIR$/modules/moviedetails" />
-            <option value="$PROJECT_DIR$/modules/person" />
             <option value="$PROJECT_DIR$/modules/restapi" />
             <option value="$PROJECT_DIR$/modules/ui" />
           </set>

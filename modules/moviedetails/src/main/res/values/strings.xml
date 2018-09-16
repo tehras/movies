@@ -8,4 +8,7 @@
     <string name="movie_description_image">Movie Description Image</string>
     <string name="reviews">Reviews</string>
     <string name="review_image">Review image</string>
+    
+    <string name="person_image">Person image</string>
+    <string name="cast_image">Cast Image</string>
 </resources>

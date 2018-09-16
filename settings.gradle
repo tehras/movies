@@ -1,6 +1,5 @@
 include ':app',
         'modules:models',
-        'modules:person',
         'modules:commonviews',
         'modules:boxoffice',
         'modules:ui',

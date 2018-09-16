@@ -1,9 +1,8 @@
-<manifest package="com.github.tehras.moviedetails"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.github.tehras.moviedetails">
 
-    <application>
-        <activity
-            android:name="com.github.tehras.moviedetails.MovieDetailsActivity"
-            android:theme="@style/Theme.Movies.DayNight.NoActionBar" />
+    <application android:theme="@style/Theme.Movies.DayNight.NoActionBar">
+        <activity android:name="com.github.tehras.moviedetails.MovieDetailsActivity" />
+        <activity android:name="com.github.tehras.person.PersonActivity" />
     </application>
 </manifest>
