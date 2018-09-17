@@ -3,11 +3,11 @@ package com.github.tehras.commonviews.movies
 import android.annotation.SuppressLint
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.github.tehras.models.tmdb.models.common.Movie
 import com.github.tehras.restapi.IMAGE_URL_SMALL
 import com.github.tehras.views.GenreOutline
 import com.jakewharton.rxbinding2.view.clicks
-import com.squareup.picasso.Picasso
 import ext.android.view.gone
 import ext.android.view.visible
 import io.reactivex.functions.Consumer
@@ -48,7 +48,7 @@ class MoviesBodyViewHolder(itemView: View, private val clicked: Consumer<Movie>)
                     }
                 }
 
-        Picasso.get()
+        Glide.with(movie_image)
                 .load("$IMAGE_URL_SMALL${discover.posterPath}")
                 .into(movie_image)
     }

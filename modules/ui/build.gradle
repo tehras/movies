@@ -4,6 +4,7 @@ apply from: "$rootDir/gradle/common-android.gradle"
 dependencies {
     api deps.appCompat
     api deps.design
+    api deps.lottie
 
     implementation deps.module.extensions
 }

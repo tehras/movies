@@ -7,6 +7,8 @@ dependencies {
     implementation deps.constraintLayout
     implementation deps.coordinatorLayout
     implementation deps.design
+    implementation deps.glide
+    kapt deps.glideApt
 
     implementation deps.module.arch
     implementation deps.module.restApi

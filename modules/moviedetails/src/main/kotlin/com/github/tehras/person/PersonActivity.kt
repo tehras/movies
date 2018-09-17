@@ -8,6 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.github.tehras.animations.fadeIn
 import com.github.tehras.animations.fadeOut
 import com.github.tehras.arch.viewModelActivity
@@ -20,7 +23,6 @@ import com.github.tehras.person.moviecredits.MovieCreditsAdapter
 import com.github.tehras.restapi.IMAGE_URL_PROFILE
 import com.github.tehras.restapi.IMAGE_URL_SMALL
 import com.github.tehras.views.ChipSelector
-import com.squareup.picasso.Picasso
 import ext.android.view.gone
 import ext.android.view.invisible
 import ext.android.view.isVisible
@@ -30,8 +32,6 @@ import ext.kotlin.toDate
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
-import jp.wasabeef.picasso.transformations.CropCircleTransformation
-import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 import jp.wasabeef.recyclerview.animators.SlideInRightAnimator
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 import kotlinx.android.synthetic.main.activity_person_layout.*
@@ -104,12 +104,28 @@ class PersonActivity : AppCompatActivity() {
                 .subscribe {
                     MovieDetailsActivity.start(this, it.movieId)
                 }
+
+        startDisposable += viewModel
+                .observeState()
+                .map { it.state }
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    loading(it == PersonState.State.LOADING)
+                }
     }
 
     override fun onStop() {
         startDisposable.clear()
 
         super.onStop()
+    }
+
+    fun loading(show: Boolean) {
+        if (show) {
+            loading_layout.start()
+        } else {
+            loading_layout.stop()
+        }
     }
 
     private fun updateTags(tags: MutableList<Credits.Tags>) {
@@ -151,16 +167,22 @@ class PersonActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun populatePersonInfo(person: Person) {
-        Picasso.get()
+        Glide.with(person_image)
                 .load("$IMAGE_URL_PROFILE${person.profilePath}")
-                .transform(RoundedCornersTransformation(16, 0))
-                .error(R.drawable.placeholder_cast)
-                .placeholder(R.drawable.placeholder_cast)
+                .apply(RequestOptions()
+                        .transform(RoundedCorners(16))
+                        .placeholder(R.drawable.placeholder_cast)
+                        .error(R.drawable.placeholder_cast)
+                )
                 .into(person_image)
 
-        Picasso.get()
+        Glide.with(person_toolbar_image)
                 .load("$IMAGE_URL_SMALL${person.profilePath}")
-                .transform(CropCircleTransformation())
+                .apply(RequestOptions()
+                        .transform(RoundedCorners(16))
+                        .placeholder(R.drawable.placeholder_cast)
+                        .error(R.drawable.placeholder_cast)
+                )
                 .into(person_toolbar_image)
 
         person_toolbar_title.text = person.name

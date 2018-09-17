@@ -4,10 +4,12 @@ import android.annotation.SuppressLint
 import android.text.Html
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.github.tehras.models.tmdb.models.cast.PersonCast
 import com.github.tehras.moviedetails.R
 import com.github.tehras.restapi.IMAGE_URL_SMALL
-import com.squareup.picasso.Picasso
 import ext.android.view.gone
 import ext.android.view.visible
 import ext.kotlin.toDate
@@ -50,10 +52,13 @@ class MovieCreditsViewHolder(
             itemClicked(cast.id)
         }
 
-        Picasso.get()
+        Glide.with(movie_image)
                 .load("$IMAGE_URL_SMALL${cast.posterPath}")
-                .placeholder(R.drawable.placeholder_movie)
-                .error(R.drawable.placeholder_movie)
+                .apply(RequestOptions()
+                        .transform(RoundedCorners(16))
+                        .placeholder(R.drawable.placeholder_cast)
+                        .error(R.drawable.placeholder_cast)
+                )
                 .into(movie_image)
     }
 }

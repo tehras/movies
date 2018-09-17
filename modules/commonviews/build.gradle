@@ -5,5 +5,4 @@ apply from: "$rootDir/gradle/common-rxbinding.gradle"
 
 dependencies {
     implementation deps.module.arch
-    implementation deps.picasso
 }

@@ -8,6 +8,5 @@ dependencies {
     implementation deps.module.movieDetails
     implementation deps.module.commonViews
 
-    implementation deps.picasso
     implementation deps.adapterAnimator
 }

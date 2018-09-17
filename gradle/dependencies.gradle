@@ -6,7 +6,9 @@ ext {
     def retrofitVer = "2.4.0"
     def archVer = "2.0.0-beta01"
     def moshiVer = "1.6.0"
+    def lottieVer = "2.6.1"
     def appCenterSdkVer = '1.8.0'
+    def glideVer = '4.8.0'
 
     deps = [
             module            : [
@@ -43,9 +45,13 @@ ext {
             retrofitMoshi     : "com.squareup.retrofit2:converter-moshi:$retrofitVer",
             retrofitRx        : "com.squareup.retrofit2:adapter-rxjava2:$retrofitVer",
 
-            picasso           : "com.squareup.picasso:picasso:2.71828",
-            picassoTransformer: "jp.wasabeef:picasso-transformations:2.2.1",
+//            picasso           : "com.squareup.picasso:picasso:2.71828",
+//            picassoTransformer: "jp.wasabeef:picasso-transformations:2.2.1",
+            glide             : "com.github.bumptech.glide:glide:$glideVer",
+            glideApt          : "com.github.bumptech.glide:glide:$glideVer",
             adapterAnimator   : "jp.wasabeef:recyclerview-animators:2.3.0",
+
+            lottie            : "com.airbnb.android:lottie:$lottieVer",
 
             moshi             : "com.squareup.moshi:moshi:$moshiVer",
             moshiKotlin       : "com.squareup.moshi:moshi-kotlin:$moshiVer",

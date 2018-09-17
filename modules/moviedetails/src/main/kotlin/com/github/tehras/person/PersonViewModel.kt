@@ -23,17 +23,19 @@ class PersonViewModel @Inject constructor(
         val imagesObservable = personService
                 .images(personId)
                 .toObservable()
+                .subscribeOn(Schedulers.io())
                 .startWith(Images(mutableListOf()))
 
         val personObservable = personService
                 .person(personId)
                 .toObservable()
+                .subscribeOn(Schedulers.io())
 
         val movieCreditsObservable = personService
                 .movieCredits(personId)
+                .subscribeOn(Schedulers.io())
                 .toObservable()
                 .map { personCred ->
-                    Timber.d("person credits :: $personCred")
                     personCred.cast
                             .asSequence()
                             .filter { it.character.isNotEmpty() }
@@ -46,6 +48,7 @@ class PersonViewModel @Inject constructor(
 
         val tvCreditsObservable = personService
                 .tvCredits(personId)
+                .subscribeOn(Schedulers.io())
                 .toObservable()
                 .map { personCred ->
                     personCred.cast
@@ -60,6 +63,7 @@ class PersonViewModel @Inject constructor(
 
         val creditsObservable =
                 Observables.zip(movieCreditsObservable, tvCreditsObservable)
+                        .subscribeOn(Schedulers.io())
                         .map {
                             val tags = mutableListOf<Credits.Tags>()
                             if (it.first.isNotEmpty()) {
@@ -85,19 +89,21 @@ class PersonViewModel @Inject constructor(
                 }
                 .onErrorReturn { PersonState(PersonState.State.ERROR) }
                 .startWith(PersonState(PersonState.State.LOADING))
+                .subscribeOn(Schedulers.io())
 
         val tagUiObservable = uiEvents()
                 .ofType(PersonUiEvent.TagUpdate::class.java)
                 .startWith(PersonUiEvent.TagUpdate(Credits.Tags.MOVIES, true))
+                .subscribeOn(Schedulers.io())
 
         Observables
                 .combineLatest(tagUiObservable, latestStateObservables)
-                .subscribeOn(Schedulers.io())
                 .map {
                     it.second.apply {
                         credits.updateTag(it.first.tag, it.first.checked)
                     }.copy()
                 }
+                .subscribeOn(Schedulers.io())
                 .subscribeUntilDestroyed()
     }
 

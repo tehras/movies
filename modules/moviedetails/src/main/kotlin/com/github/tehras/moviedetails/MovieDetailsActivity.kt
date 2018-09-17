@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.github.tehras.arch.viewModelActivity
 import com.github.tehras.dagger.components.findComponent
 import com.github.tehras.models.tmdb.models.moviedetails.MovieDetails
@@ -13,7 +14,6 @@ import com.github.tehras.moviedetails.castadapter.Action
 import com.github.tehras.moviedetails.castadapter.CastAdapter
 import com.github.tehras.person.PersonActivity
 import com.github.tehras.restapi.IMAGE_URL_LARGE
-import com.squareup.picasso.Picasso
 import ext.android.view.gone
 import ext.android.view.visible
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -93,6 +93,14 @@ class MovieDetailsActivity : AppCompatActivity() {
                 .subscribeBy {
                     PersonActivity.start(this, it.id)
                 }
+
+        startDisposable += viewModel
+                .observeState()
+                .map { it.state }
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    loading(it == MovieDetailsState.State.LOADING)
+                }
     }
 
     override fun onStop() {
@@ -101,8 +109,12 @@ class MovieDetailsActivity : AppCompatActivity() {
         super.onStop()
     }
 
-    private fun showLoading() {
-        // TODO
+    private fun loading(show: Boolean) {
+        if (show) {
+            movies_loading.start()
+        } else {
+            movies_loading.stop()
+        }
     }
 
     private fun showError() {
@@ -115,7 +127,7 @@ class MovieDetailsActivity : AppCompatActivity() {
 
         movie_description.setText(movie.overview!!)
 
-        Picasso.get()
+        Glide.with(background_image)
                 .load("$IMAGE_URL_LARGE${movie.backdropPath}")
                 .into(background_image)
     }
